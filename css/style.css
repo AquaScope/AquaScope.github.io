@@ -23,7 +23,7 @@ dd {
   color: white;
   height: 100%;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 40px 0;
 }
 #intro .content {
   margin: 10% auto;
@@ -58,12 +58,14 @@ dd {
     font-size: 16px;
   }
 }
+.chartbox {
+  padding: 40px 0;
+}
 #section-1 {
   background-color: #fff;
   color: #333;
-  height: 400px;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 40px 0;
 }
 #section-1 .content {
   padding: 0 80px;
@@ -83,11 +85,10 @@ dd {
 #section-2 .content,
 #section-3 .content {
   padding: 0 80px;
-  height: 300px;
 }
 #section-2 .content-wrapper,
 #section-3 .content-wrapper {
-  padding: 20px 0;
+  padding: 40px 0;
 }
 #section-2 .viewbox,
 #section-3 .viewbox {
