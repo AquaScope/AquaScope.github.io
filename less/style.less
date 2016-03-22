@@ -24,7 +24,7 @@ dd {
 	padding: @padding;
 }
 
-.box-inner(@padding: 0 80px) {
+.box-inner(@padding: 0 5%) {
 	padding: @padding;
 }
 
@@ -90,7 +90,7 @@ dd {
 
 #section-2 {
 	.viewbox {
-		background: url('../images/bottle-bg.jpg') 50% 0 no-repeat fixed;
+		background: url('../images/shortage.jpg') 50% 0 no-repeat fixed;
 		
 		.float-text {
 			float: right;
@@ -108,9 +108,31 @@ dd {
 	}
 }
 
+#section-4 {
+	.viewbox {
+		background: url('../images/COD-bg.jpg') 50% 0 no-repeat fixed;
+
+		.float-text {
+			float: left;
+		}
+	}
+}
+
+#section-5 {
+	.viewbox {
+		background: url('../images/bottle-bg.jpg') 50% 0 no-repeat fixed;
+
+		.float-text {
+			float: left;
+		}
+	}
+}
+
 
 #section-2,
-#section-3 {
+#section-3,
+#section-4, 
+#section-5 {
 	.content {
 		.box-inner;
 		// height: 300px;
@@ -127,7 +149,7 @@ dd {
 
 		.float-text {
 			margin-top: 10%;
-			padding: 0 40px;
+			padding: 0 5%;
 			width: 40%;
 			text-shadow: 0 0 20px #333;
 			line-height: 30px;
@@ -152,16 +174,24 @@ dd {
 }
 
 @media screen and (max-width: 480px) {
-	#section-2 .viewbox,
-	#section-3 .viewbox {
-		display: none;
+	#section-2,
+	#section-3,
+	#section-4,
+	#section-5 {
+		.viewbox {
+			display: none;
+		}
 	}
 
-	#section-2 .viewbox-static,
-	#section-3 .viewbox-static {
-		display: block;
-		background-size: 100% auto;
-		background-position: center;
+	#section-2,
+	#section-3,
+	#section-4,
+	#section-5 {
+		.viewbox-static {
+			display: block;
+			background-size: 100% auto;
+			background-position: center;
+		}
 	}
 }
 

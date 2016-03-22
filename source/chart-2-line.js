@@ -1,7 +1,7 @@
 var chart_2 = echarts.init(document.getElementById('chart-2-line'));
 option = {
 	title: {
-	    text: '2005年至2014年全国分省用水情况及全国水资源总量、人均水资源变化趋势',
+	    text: '2005年至2014年全国分省用水情况',
 	    left: 'center',
 	},
 	tooltip : {
@@ -9,7 +9,7 @@ option = {
 	    padding: 20
 	},
 	legend: {
-	    data:['工业用水', '农业用水', '生活用水', '生态用水', '全国水资源总量'],
+	    data:['工业用水', '农业用水', '生活用水', '生态用水', '全国水资源总量', '全国地表水资源总量'],
 	    left: 'center',
 	    top: 60
 	},
@@ -37,14 +37,33 @@ option = {
 	        type : 'category',
 	        boundaryGap : false,
 	 		axisLabel: { interval: 0 },
-	        data : ['2005','2006','2007','2008','2009','2010','2011','2012','2013','2014',]
+	        data : ['2005','2006','2007','2008','2009','2010','2011','2012','2013','2014'],
+	        splitLine: {
+	        	lineStyle: {
+	        	    type: 'dashed'
+	        	}
+	        }
 	    }
 	],
 	yAxis : [
 	    {	
 	    	name: '用水量（亿立方米）',
-	        type : 'value'
-	    }
+	        type : 'value',
+	        max: 10000,
+	        splitLine: {
+	        	lineStyle: {
+	        	    type: 'dashed'
+	        	}
+	        }
+	    },
+	    {	
+	    	name: '水资源总量（亿立方米）',
+	        type : 'value',
+	        splitLine: {
+	        	show: false
+	        }
+	    },
+
 	],
 	series: [
 		{
@@ -109,6 +128,7 @@ option = {
 		},
 		{
 			name: '全国水资源总量', type: 'line',
+			yAxisIndex: 1,
 			data: [
 				dataMap.dataLiquidResource['2005sum'],
 				dataMap.dataLiquidResource['2006sum'],
@@ -120,6 +140,22 @@ option = {
 				dataMap.dataLiquidResource['2012sum'],
 				dataMap.dataLiquidResource['2013sum'],
 				dataMap.dataLiquidResource['2014sum']
+			]
+		},
+		{
+			name: '全国地表水资源总量', type: 'line',
+			yAxisIndex: 1,
+			data: [
+				dataMap.dataSurfaceLiquid['2005sum'],
+				dataMap.dataSurfaceLiquid['2006sum'],
+				dataMap.dataSurfaceLiquid['2007sum'],
+				dataMap.dataSurfaceLiquid['2008sum'],
+				dataMap.dataSurfaceLiquid['2009sum'],
+				dataMap.dataSurfaceLiquid['2010sum'],
+				dataMap.dataSurfaceLiquid['2011sum'],
+				dataMap.dataSurfaceLiquid['2012sum'],
+				dataMap.dataSurfaceLiquid['2013sum'],
+				dataMap.dataSurfaceLiquid['2014sum']
 			]
 		}
 	]

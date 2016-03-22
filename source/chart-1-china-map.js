@@ -1,4 +1,3 @@
-
 var chart_1 = echarts.init(document.getElementById('chart-1-china-map'));
 
 var categoryData = [
@@ -22,109 +21,140 @@ var convertData = function (data) {
     return res;
 };
 
-option = {
+option= {
     baseOption: {
         timeline: {
             axisType: 'category',
             autoPlay: true,
-            playInterval: 1000,
+            playInterval: 1500,
             data: [
-                '2005-01-01', '2006-01-01', '2007-01-01',
-                '2008-01-01', '2009-01-01', '20010-01-01',
-                '20011-01-01', '20012-01-01', '2013-01-01',
-                '2014-01-01'
+                '2004-01-01', '2005-01-01', '2006-01-01', '2007-01-01',
+                '2008-01-01', '2009-01-01', '2010-01-01', '2011-01-01', 
+                '2012-01-01', '2013-01-01', '2014-01-01'
             ],
             label: {
                 formatter : function(s) {
                     return (new Date(s)).getFullYear();
                 }
-            }
+            },
+            top: 'bottom'
         },
         title: {
-            subtext: '第一个是板块——中国各省水资源与人均水资源概况'
+            text: '2005年-2014年全国分省水资源总量与人均水资源占有量情况',
+            // subtext: 'data from PM25.in',
+            // sublink: 'http://www.pm25.in',
+            left: 'center',
+            textStyle: {
+                color: '#333'
+            }
         },
-        tooltip: {
-            trigger:'item'
+        tooltip : {
+            trigger: 'item',
+            formatter : function (params) {
+                if (params.value.length > 1) {
+                    return params.name + ' :<br/>'
+                        + "水资源总量：" + params.value[2] + '亿立方米 ' + '<br/>'
+                        + "人均水资源占有量：" + params.value[3] + '立方米 ';
+                }
+                else {
+                    return params.seriesName + ' :<br/>'
+                        + params.name + ' : '
+                        + params.value + '万吨 ';
+                }
+            },
         },
         legend: {
-            data: ['水资源总量', '人均水资源量'],
-            left: 'auto',
-            top: 80
-        },
-        visualMap: [
-            {
-                min: 0,
-                max: 4500,
-                left: 'left',
-                top: 'bottom',
-                text: ['高','低'],           // 文本，默认为数值文本
-                calculable: true
-            },
-            {
-                bottom: 'bottom',
-                left: 'auto',
-                dimension: 2,
-                min: 0,
-                max: 8000,
-                itemWidth: 30,
-                itemHeight: 120,
-                calculable: true,
-                precision: 0.1,
-                text: ['圆形大小：水资源总量（亿立方米）'],
-                textGap: 30,
-                textStyle: {
-                    color: '#333'
-                },
-                inRange: {
-                    symbolSize: [10, 50]
-                },
-                outOfRange: {
-                    symbolSize: [10, 50],
-                    color: ['rgba(255,255,255,.2)']
-                },
-                controller: {
-                    inRange: {
-                        color: ['#d94e5d']
-                    },
-                    outOfRange: {
-                        color: ['#444']
-                    }
-                }
+            data:['水资源情况'],
+            orient: 'vertical',
+            y: 'bottom',
+            x:'right',
+            textStyle: {
+                color: '#333'
             }
-        ],
+        },
         geo: {
             map: 'china',
+            label: {
+                emphasis: {
+                    show: false
+                }
+            },
+            // roam: true,
             itemStyle: {
                 normal: {
-                    areaColor: '#323c48',
-                    borderColor: '#111'
+                    areaColor: '#f9f9f9',
+                    borderColor: '#ddd'
                 },
                 emphasis: {
-                    areaColor: '#2a333d'
+                    areaColor: '#f1f1f1'
                 }
             }
         },
-        series: [
-            {
-            	name: '水资源总量',
-            	type: 'map',
-                mapType: 'china',
-            	label: {
-                    normal: {
-                        show: true
+        visualMap: [
+                {
+                    left: 'right',
+                    top: '10%',
+                    dimension: 2,
+                    min: 0,
+                    max: 4000,
+                    itemWidth: 30,
+                    itemHeight: 120,
+                    calculable: true,
+                    precision: 0.1,
+                    text: ['圆形大小：水资源总量'],
+                    textGap: 30,
+                    textStyle: {
+                        color: '#fff'
                     },
-                    emphasis: {
-                        show: true
+                    inRange: {
+                        symbolSize: [10, 100]
+                    },
+                    outOfRange: {
+                        symbolSize: [10, 100],
+                        color: ['rgba(255,255,255,.5)']
+                    },
+                    controller: {
+                        inRange: {
+                            color: ['#1B8BFF']
+                        },
+                        outOfRange: {
+                            color: ['#eee']
+                        }
                     }
                 },
-                itemStyle: {
-                    normal: {
-                        color: '#d94e5d'
+                {
+                    left: 'right',
+                    bottom: '5%',
+                    dimension: 3,
+                    min: 0,
+                    max: 5000,
+                    itemHeight: 120,
+                    calculable: true,
+                    precision: 0.1,
+                    text: ['明暗：人均水资源占有量'],
+                    textGap: 30,
+                    textStyle: {
+                        color: '#fff'
+                    },
+                    inRange: {
+                        colorAlpha: [0.2, 1],
+                    },
+                    outOfRange: {
+                        color: ['rgba(255,255,255,.5)']
+                    },
+                    controller: {
+                        inRange: {
+                            color: ['#1B8BFF']
+                        },
+                        outOfRange: {
+                            color: ['#eee']
+                        }
                     }
                 }
-            },
+            ],
+        series: [
             {
-                name: '人均水资源量',
+                name: '水资源情况',
                 type: 'scatter',
                 coordinateSystem: 'geo',
                 symbolSize: function (val) {
@@ -142,84 +172,85 @@ option = {
                 },
                 itemStyle: {
                     normal: {
-                        color: '#d94e5d'
+                        color: '#1B8BFF'
                     }
+                }
             }
-        },
         ]
     },
     options: [
         {
-            title: {text: '2005年各省水资源总量与人均水资源量情况'},
-            series: [
-                {data: convertData(dataMap.dataLiquidResource['2005'])},
-                {data: convertData(dataMap.dataLiquidPersonal['2005'])}
-            ]
+            title: {text: '2005 年全国分省水资源总量与人均水资源占有量情况'},
+            series: [ { 
+                data: convertData(dataMap.dataLiquidResource_Personal['2005']) 
+            } 
+        ]
         },
         {
-            title: {text: '2006年各省水资源总量与人均水资源量情况'},
-            series: [
-                {data: convertData(dataMap.dataLiquidResource['2006'])},
-                {data: convertData(dataMap.dataLiquidPersonal['2006'])}
-            ]
+            title: {text: '2006 年全国分省水资源总量与人均水资源占有量情况'},
+            series: [ { 
+                data: convertData(dataMap.dataLiquidResource_Personal['2006']) 
+            } 
+        ]
         },
         {
-            title: {text: '2007年各省水资源总量与人均水资源量情况'},
-            series: [
-                {data: convertData(dataMap.dataLiquidResource['2007'])},
-                {data: convertData(dataMap.dataLiquidPersonal['2007'])}
-            ]
+            title: {text: '2007 年全国分省水资源总量与人均水资源占有量情况'},
+            series: [ { 
+                data: convertData(dataMap.dataLiquidResource_Personal['2007']) 
+            } 
+        ]
         },
         {
-            title: {text: '2008年各省水资源总量与人均水资源量情况'},
-            series: [
-                {data: convertData(dataMap.dataLiquidResource['2008'])},
-                {data: convertData(dataMap.dataLiquidPersonal['2008'])}
-            ]
+            title: {text: '2008 年全国分省水资源总量与人均水资源占有量情况'},
+            series: [ { 
+                data: convertData(dataMap.dataLiquidResource_Personal['2008']) 
+            } 
+        ]
         },
         {
-            title: {text: '2009年各省水资源总量与人均水资源量情况'},
-            series: [
-                {data: convertData(dataMap.dataLiquidResource['2009'])},
-                {data: convertData(dataMap.dataLiquidPersonal['2009'])}
-            ]
+            title: {text: '2009 年全国分省水资源总量与人均水资源占有量情况'},
+            series: [ { 
+                data: convertData(dataMap.dataLiquidResource_Personal['2009']) 
+            } 
+        ]
         },
         {
-            title: {text: '2010年各省水资源总量与人均水资源量情况'},
-            series: [
-                {data: convertData(dataMap.dataLiquidResource['2010'])},
-                {data: convertData(dataMap.dataLiquidPersonal['2010'])}
-            ]
+            title: {text: '2010 年全国分省水资源总量与人均水资源占有量情况'},
+            series: [ { 
+                data: convertData(dataMap.dataLiquidResource_Personal['2010']) 
+            } 
+        ]
         },
         {
-            title: {text: '2011年各省水资源总量与人均水资源量情况'},
-            series: [
-                {data: convertData(dataMap.dataLiquidResource['2011'])},
-                {data: convertData(dataMap.dataLiquidPersonal['2011'])}
-            ]
+            title: {text: '2011 年全国分省水资源总量与人均水资源占有量情况'},
+            series: [ { 
+                data: convertData(dataMap.dataLiquidResource_Personal['2011']) 
+            } 
+        ]
         },
         {
-            title: {text: '2012年各省水资源总量与人均水资源量情况'},
-            series: [
-                {data: convertData(dataMap.dataLiquidResource['2012'])},
-                {data: convertData(dataMap.dataLiquidPersonal['2012'])}
-            ]
+            title: {text: '2012 年全国分省水资源总量与人均水资源占有量情况'},
+            series: [ { 
+                data: convertData(dataMap.dataLiquidResource_Personal['2012']) 
+            } 
+        ]
         },
         {
-            title: {text: '2013年各省水资源总量与人均水资源量情况'},
-            series: [
-                {data: convertData(dataMap.dataLiquidResource['2013'])},
-                {data: convertData(dataMap.dataLiquidPersonal['2013'])}
-            ]
+            title: {text: '2013 年全国分省水资源总量与人均水资源占有量情况'},
+            series: [ { 
+                data: convertData(dataMap.dataLiquidResource_Personal['2013']) 
+            } 
+        ]
         },
         {
-            title: {text: '2014年各省水资源总量与人均水资源量情况'},
-            series: [
-                {data: convertData(dataMap.dataLiquidResource['2014'])},
-                {data: convertData(dataMap.dataLiquidPersonal['2014'])}
-            ]
-        }
+            title: {text: '2014 年全国分省水资源总量与人均水资源占有量情况'},
+            series: [ { 
+                data: convertData(dataMap.dataLiquidResource_Personal['2014']) 
+            } 
+        ]
+        },
     ]
-};
+}
+
 
 chart_1.setOption(option);
