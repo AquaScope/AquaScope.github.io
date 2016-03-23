@@ -37,7 +37,19 @@ option= {
                     return (new Date(s)).getFullYear();
                 }
             },
-            top: 'bottom'
+            top: 'bottom',
+            itemStyle: {
+                normal: {
+
+                },
+                emphasis: {
+                    color: '#52B3FF',
+                }
+            },
+            checkpointStyle: {
+                color: '#52B3FF',
+                borderWidth: 0
+            }
         },
         title: {
             text: '2005年-2014年全国分省水资源总量与人均水资源占有量情况',
@@ -57,13 +69,12 @@ option= {
                         + "人均水资源占有量：" + params.value[3] + '立方米 ';
                 }
                 else {
-                    return params.seriesName + ' :<br/>'
-                        + params.name + ' : '
-                        + params.value + '万吨 ';
+                    return false
                 }
             },
         },
         legend: {
+            show: false,
             data:['水资源情况'],
             orient: 'vertical',
             y: 'bottom',
@@ -82,8 +93,8 @@ option= {
             // roam: true,
             itemStyle: {
                 normal: {
-                    areaColor: '#f9f9f9',
-                    borderColor: '#ddd'
+                    areaColor: '#f6f6f6',
+                    borderColor: '#ccc'
                 },
                 emphasis: {
                     areaColor: '#f1f1f1'
@@ -101,10 +112,10 @@ option= {
                     itemHeight: 120,
                     calculable: true,
                     precision: 0.1,
-                    text: ['圆形大小：水资源总量'],
+                    text: ['圆形大小：水资源总量（亿立方米）'],
                     textGap: 30,
                     textStyle: {
-                        color: '#fff'
+                        color: '#1B8BFF'
                     },
                     inRange: {
                         symbolSize: [10, 100]
@@ -131,10 +142,10 @@ option= {
                     itemHeight: 120,
                     calculable: true,
                     precision: 0.1,
-                    text: ['明暗：人均水资源占有量'],
+                    text: ['明暗：人均水资源占有量（立方米）'],
                     textGap: 30,
                     textStyle: {
-                        color: '#fff'
+                        color: '#1B8BFF'
                     },
                     inRange: {
                         colorAlpha: [0.2, 1],

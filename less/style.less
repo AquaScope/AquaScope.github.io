@@ -28,6 +28,10 @@ dd {
 	padding: @padding;
 }
 
+.chartbox {
+	padding: 50px 0;
+}
+
 #intro {
 	background:url('../images/intro-bg.jpg') 30% 0 no-repeat fixed;
 	background-size: cover;
@@ -71,20 +75,13 @@ dd {
 	}
 }
 
-.chartbox {
-	padding: 40px 0;
-}
-
 #section-1 {
-	// background:url(../images/thirdBG.jpg) 50% 0 no-repeat fixed;
-	background-color: #fff;
-	color: #333;
-	// height: 400px;
-	margin: 0 auto;
-	.box-wrapper;
-
-	.content {
-		.box-inner;
+	.viewbox {
+		background: url('../images/shortage.jpg') 50% 0 no-repeat fixed;
+		
+		.float-text {
+			float: right;
+		}
 	}
 }
 
@@ -129,6 +126,8 @@ dd {
 }
 
 
+#section-0,
+#section-1,
 #section-2,
 #section-3,
 #section-4, 
@@ -174,6 +173,7 @@ dd {
 }
 
 @media screen and (max-width: 480px) {
+	#section-1,
 	#section-2,
 	#section-3,
 	#section-4,
@@ -183,6 +183,7 @@ dd {
 		}
 	}
 
+	#section-1,
 	#section-2,
 	#section-3,
 	#section-4,

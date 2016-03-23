@@ -17,6 +17,9 @@ p {
 dd {
   margin: 0;
 }
+.chartbox {
+  padding: 50px 0;
+}
 #intro {
   background: url('../images/intro-bg.jpg') 30% 0 no-repeat fixed;
   background-size: cover;
@@ -58,17 +61,11 @@ dd {
     font-size: 16px;
   }
 }
-.chartbox {
-  padding: 40px 0;
+#section-1 .viewbox {
+  background: url('../images/shortage.jpg') 50% 0 no-repeat fixed;
 }
-#section-1 {
-  background-color: #fff;
-  color: #333;
-  margin: 0 auto;
-  padding: 40px 0;
-}
-#section-1 .content {
-  padding: 0 5%;
+#section-1 .viewbox .float-text {
+  float: right;
 }
 #section-2 .viewbox {
   background: url('../images/shortage.jpg') 50% 0 no-repeat fixed;
@@ -94,18 +91,24 @@ dd {
 #section-5 .viewbox .float-text {
   float: left;
 }
+#section-0 .content,
+#section-1 .content,
 #section-2 .content,
 #section-3 .content,
 #section-4 .content,
 #section-5 .content {
   padding: 0 5%;
 }
+#section-0 .content-wrapper,
+#section-1 .content-wrapper,
 #section-2 .content-wrapper,
 #section-3 .content-wrapper,
 #section-4 .content-wrapper,
 #section-5 .content-wrapper {
   padding: 40px 0;
 }
+#section-0 .viewbox,
+#section-1 .viewbox,
 #section-2 .viewbox,
 #section-3 .viewbox,
 #section-4 .viewbox,
@@ -115,6 +118,8 @@ dd {
   height: 600px;
   margin: 0 auto;
 }
+#section-0 .viewbox .float-text,
+#section-1 .viewbox .float-text,
 #section-2 .viewbox .float-text,
 #section-3 .viewbox .float-text,
 #section-4 .viewbox .float-text,
@@ -125,6 +130,8 @@ dd {
   text-shadow: 0 0 20px #333;
   line-height: 30px;
 }
+#section-0 .viewbox .float-text dt,
+#section-1 .viewbox .float-text dt,
 #section-2 .viewbox .float-text dt,
 #section-3 .viewbox .float-text dt,
 #section-4 .viewbox .float-text dt,
@@ -132,6 +139,8 @@ dd {
   padding-bottom: 10px;
   font-size: 24px;
 }
+#section-0 .viewbox-static,
+#section-1 .viewbox-static,
 #section-2 .viewbox-static,
 #section-3 .viewbox-static,
 #section-4 .viewbox-static,
@@ -140,6 +149,8 @@ dd {
   width: 100%;
   overflow: hidden;
 }
+#section-0 .viewbox-static img,
+#section-1 .viewbox-static img,
 #section-2 .viewbox-static img,
 #section-3 .viewbox-static img,
 #section-4 .viewbox-static img,
@@ -147,12 +158,14 @@ dd {
   max-width: 100%;
 }
 @media screen and (max-width: 480px) {
+  #section-1 .viewbox,
   #section-2 .viewbox,
   #section-3 .viewbox,
   #section-4 .viewbox,
   #section-5 .viewbox {
     display: none;
   }
+  #section-1 .viewbox-static,
   #section-2 .viewbox-static,
   #section-3 .viewbox-static,
   #section-4 .viewbox-static,

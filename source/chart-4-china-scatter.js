@@ -2,12 +2,12 @@ var chart_4 = echarts.init(document.getElementById('chart-4-china-scatter'));
 
 option = {
     title : {
-        text: '2005年-2014年全国分省废水排放量与化学需氧量排放量分布',
+        text: '2005年-2014年全国分地区废水排放量与化学需氧量排放量分布',
         subtext: '抽样调查来自: Heinz  2003'
     },
     grid: {
         left: '3%',
-        right: 100,
+        right: 120,
         bottom: 60,
         containLabel: true
     },
@@ -17,7 +17,7 @@ option = {
         formatter : function (params) {
 			if (params.value.length > 1) {
 			    return params.seriesName + ' <br/>'
-					+ params.name + ' :<br/>'
+					+ params.name + '年 :<br/>'
 					+ "化学需氧量排放量：" + params.value[0] + '万吨 ' + '<br/>'
 					+ "废水排放量：" + params.value[1] + '万吨 ';
 			}
@@ -38,8 +38,7 @@ option = {
     },
     legend: {
         data: [
-        	'2005年','2006年','2007年','2008年','2009年',
-        	'2010年','2011年','2012年','2013年','2014年'
+        	'东部地区', '中部地区', '西部地区', '东北地区'
         ],
         left: 'right',
         orient: 'vertical'
@@ -73,122 +72,84 @@ option = {
         }
     ],
     dataZoom: [
-            {
-                type: 'slider',
-                show: true,
-                xAxisIndex: [0],
-                start: 0,
-                end: 33
+        {
+            type: 'slider',
+            show: true,
+            xAxisIndex: [0],
+            start: 0,
+            end: 100
+        }
+    ],
+    visualMap: [
+    	{
+    		left: 'right',
+            bottom: '5%',
+            align: 'left',
+            dimension: 2,
+            min: 2005,
+            max: 2014,
+            itemHeight: 120,
+            calculable: true,
+            precision: 0.1,
+            text: ['明暗：年份变化'],
+            textGap: 30,
+            textStyle: {
+                color: '#333'
+            },
+            inRange: {
+                colorAlpha: [0.1, 1]
+            },
+            outOfRange: {
+                color: ['rgba(255,255,255,.2)']
+            },
+            controller: {
+                inRange: {
+                    color: ['#52B3FF']
+                },
+                outOfRange: {
+                    color: ['#f6f6f6']
+                }
             }
-        ],
+    	}
+    ],
     series : [
         {
-            name:'2005年',
+            name:'西部地区',
             type:'scatter',
-            data: dataMap.dataCOD_WasteWater['2005'],
+            data: dataMap.dataCOD_WasteWater_area_year['西部地区'],
             itemStyle: {
                 normal: {
-                    color: '#FF6666',
-                    opacity: 0.1
+                    color: '#03D600',
                 }
             },
         },
         {
-            name:'2006年',
+            name:'东部地区',
             type:'scatter',
-            data: dataMap.dataCOD_WasteWater['2006'],
+            data: dataMap.dataCOD_WasteWater_area_year['东部地区'],
             itemStyle: {
                 normal: {
-                    color: '#FF6666',
-                    opacity: 0.2
+                    color: '#D94720',
                 }
             },
         },
         {
-            name:'2007年',
+            name:'中部地区',
             type:'scatter',
-            data: dataMap.dataCOD_WasteWater['2007'],
+            data: dataMap.dataCOD_WasteWater_area_year['中部地区'],
             itemStyle: {
                 normal: {
-                    color: '#FF6666',
-                    opacity: 0.3
+                    color: '#398BFF',
                 }
             },
         },
         {
-            name:'2008年',
+            name:'东北地区',
             type:'scatter',
-            data: dataMap.dataCOD_WasteWater['2008'],
+            data: dataMap.dataCOD_WasteWater_area_year['东北地区'],
             itemStyle: {
                 normal: {
-                    color: '#FF6666',
-                    opacity: 0.4
-                }
-            },
-        },
-        {
-            name:'2009年',
-            type:'scatter',
-            data: dataMap.dataCOD_WasteWater['2009'],
-            itemStyle: {
-                normal: {
-                    color: '#FF6666',
-                    opacity: 0.5
-                }
-            },
-        },
-        {
-            name:'2010年',
-            type:'scatter',
-            data: dataMap.dataCOD_WasteWater['2010'],
-            itemStyle: {
-                normal: {
-                    color: '#D35559',
-                    opacity: 0.6
-                }
-            },
-        },
-        {
-            name:'2011年',
-            type:'scatter',
-            data: dataMap.dataCOD_WasteWater['2011'],
-            itemStyle: {
-                normal: {
-                    color: '#D35559',
-                    opacity: 0.7
-                }
-            },
-        },
-        {
-            name:'2012年',
-            type:'scatter',
-            data: dataMap.dataCOD_WasteWater['2012'],
-            itemStyle: {
-                normal: {
-                    color: '#D35559',
-                    opacity: 0.8
-                }
-            },
-        },
-        {
-            name:'2013年',
-            type:'scatter',
-            data: dataMap.dataCOD_WasteWater['2013'],
-            itemStyle: {
-                normal: {
-                    color: '#D35559',
-                    opacity: 0.9
-                }
-            },
-        },
-        {
-            name:'2014年',
-            type:'scatter',
-            data: dataMap.dataCOD_WasteWater['2014'],
-            itemStyle: {
-                normal: {
-                    color: '#BE4D53',
-                    opacity: 1
+                    color: '#E19508',
                 }
             },
         }
