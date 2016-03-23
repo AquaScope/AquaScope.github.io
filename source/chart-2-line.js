@@ -2,11 +2,13 @@ var chart_2 = echarts.init(document.getElementById('chart-2-line'));
 option = {
 	title: {
 	    text: '2005年至2014年全国分省用水情况',
+	    subtext: '数据来自: 中华人民共和国国家统计局',
+	    sublink: 'http://data.stats.gov.cn/',
 	    left: 'center',
 	},
 	tooltip : {
 	    trigger: 'axis',
-	    padding: 20
+	    padding: 20,
 	},
 	legend: {
 	    data:['工业用水', '农业用水', '生活用水', '生态用水', '全国水资源总量', '全国地表水资源总量'],

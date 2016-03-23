@@ -20,6 +20,8 @@ option= {
 		},
 		title: {
 		    text: '2005年至2014年全国分省水资源盈亏情况',
+		    subtext: '数据来自: WHO/UNICEF Joint Monitoring Programme (JMP) for Water Supply and Sanitation.',
+		    sublink: 'http://www.wssinfo.org/',
 		    left: 'center',
 		},
 		tooltip : {

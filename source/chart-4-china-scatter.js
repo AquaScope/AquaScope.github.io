@@ -3,7 +3,8 @@ var chart_4 = echarts.init(document.getElementById('chart-4-china-scatter'));
 option = {
     title : {
         text: '2005年-2014年全国分地区废水排放量与化学需氧量排放量分布',
-        subtext: '抽样调查来自: Heinz  2003'
+        subtext: '数据来自: 中华人民共和国国家统计局',
+        sublink: 'http://data.stats.gov.cn/',
     },
     grid: {
         left: '3%',

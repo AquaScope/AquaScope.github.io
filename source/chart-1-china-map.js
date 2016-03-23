@@ -53,8 +53,8 @@ option= {
         },
         title: {
             text: '2005年-2014年全国分省水资源总量与人均水资源占有量情况',
-            // subtext: 'data from PM25.in',
-            // sublink: 'http://www.pm25.in',
+            subtext: '数据来自: 中华人民共和国国家统计局',
+            sublink: 'http://data.stats.gov.cn/',
             left: 'center',
             textStyle: {
                 color: '#333'
