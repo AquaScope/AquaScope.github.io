@@ -41,7 +41,7 @@ option = {
 	    {
 	    	name: '单位（亿立方米）',
 	        type : 'value',
-	        max: 800,
+	        max: 700,
 	        splitLine: {
 	        	lineStyle: {
 	        	    type: 'dashed'

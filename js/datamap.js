@@ -5,7 +5,7 @@ var dataMap = {};
  * @param  {[type]} obj  [description]
  * @param  {[string]} type [设置要转换的格式：
  *                         默认为中国分省
- *                         wolrd为全球26个国家
+ *                         wolrd为全球28个国家
  *                         area为中国分地区]
  */
 function dataFormatter(obj, type) {
@@ -30,7 +30,7 @@ function dataFormatter(obj, type) {
         return obj;
     } else {
         if (type === 'world') {
-            var pList = ['北京','天津','河北','山西','内蒙古','辽宁','吉林','黑龙江','上海','江苏','浙江','安徽','福建','江西','山东','河南','湖北','湖南','广东','广西','海南','重庆','四川','贵州','云南','西藏','陕西','甘肃','青海','宁夏','新疆'];
+            var pList = ["East Timor", "China", "Canada", "Indonesia", "Guatemala", "Ecuador", "Costa Rica", "Mexico", "South Korea", "Nicaragua", "Papua New Guinea", "Panama", "Singapore", "New Zealand", "Japan", "Chile", "North Korea", "Cambodia", "Thailand", "Australia", "Peru", "United States of America", "Laos", "Philippines", "El Salvador", "Vietnam", "Malaysia", "Colombia", "Russia"];
         } else if (type === 'area') {
             var pList = ['西部地区', '东部地区', '中部地区', '东北地区'];
         }
@@ -154,8 +154,6 @@ function mixData(list, item, addYear) {
  * @return {[object]}     [返回过滤后的新对象]
  */
 function filterDdata(list, filter, inverse) {
-    
-
     if(filter === 'minus') {
         if(inverse) {
             var obj = filterMinus(list);
@@ -512,8 +510,7 @@ dataMap.dataLiquidWrold = dataFormatter({
     // 哥伦比亚
     // 俄罗斯
     
-    
-    // Timor-Leste
+    // East Timor
     // China
     // Canada
     // Indonesia
@@ -521,31 +518,30 @@ dataMap.dataLiquidWrold = dataFormatter({
     // Ecuador
     // Costa Rica
     // Mexico
-    // Korea, Rep.
+    // South Korea
     // Nicaragua
     // Papua New Guinea
     // Panama
-    // Singapore
+    // // Singapore
     // New Zealand
     // Japan
     // Chile
-    // Korea, Dem. Rep.
+    // North Korea
     // Cambodia
     // Thailand
     // Australia
     // Peru
-    // United States
-    // Lao PDR
+    // United States of America
+    // Laos
     // Philippines
     // El Salvador
     // Vietnam
     // Malaysia
     // Colombia
-    // Russian Federation
-})
+    // Russia
+}, 'world')
 
-
-console.log(dataMap.dataLiquidRemaining_minority);
+// console.log(dataMap.dataLiquidWrold);
 // console.log(dataMap.dataCOD_WasteWater_area_year);
 
 
