@@ -18,7 +18,7 @@ option = {
         }
     },
     toolbox: {
-        show: true,
+        show: false,
         orient: 'vertical',
         left: 'right',
         top: 'center',

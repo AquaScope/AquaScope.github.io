@@ -16,6 +16,7 @@ option = {
 	    top: 60
 	},
 	toolbox: {
+		show: false,
 	    feature: {
 	        dataView: {
 	        	title: '查看原始数据',

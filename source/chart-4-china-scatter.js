@@ -37,6 +37,9 @@ option = {
             }
         }
     },
+    toolbox: {
+        show: false,
+    },
     legend: {
         data: [
         	'东部地区', '中部地区', '西部地区', '东北地区'

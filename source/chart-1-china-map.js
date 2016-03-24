@@ -28,7 +28,7 @@ option= {
             autoPlay: true,
             playInterval: 1500,
             data: [
-                '2004-01-01', '2005-01-01', '2006-01-01', '2007-01-01',
+                '2005-01-01', '2006-01-01', '2007-01-01',
                 '2008-01-01', '2009-01-01', '2010-01-01', '2011-01-01', 
                 '2012-01-01', '2013-01-01', '2014-01-01'
             ],
@@ -105,6 +105,7 @@ option= {
             {
                 left: 'right',
                 top: '10%',
+                align: 'left',
                 dimension: 2,
                 min: 0,
                 max: 4000,
@@ -129,13 +130,14 @@ option= {
                         color: ['#1B8BFF']
                     },
                     outOfRange: {
-                        color: ['#eee']
+                        color: ['#fff']
                     }
                 }
             },
             {
                 left: 'right',
                 bottom: '5%',
+                align: 'left',
                 dimension: 3,
                 min: 0,
                 max: 5000,
