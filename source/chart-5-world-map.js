@@ -11,10 +11,12 @@ option = {
     tooltip: {
         trigger: 'item',
         formatter: function (params) {
-            var value = (params.value + '').split('.');
-            value = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,')
-                    + '.' + value[1];
-            return params.seriesName + '<br/>' + params.name + ' : ' + value;
+            if(params.value != 0) {
+            	return params.name + ' : ' + params.value + '%';
+            } else {
+            	var rst = '暂无数据';
+            	return params.name + ' : ' + rst;
+            }
         }
     },
     toolbox: {
@@ -28,19 +30,27 @@ option = {
             saveAsImage: {}
         }
     },
+    grid: {
+        bottom: 60,
+    },
     visualMap: {
-        min: 1,
+    	left: 'right',
+    	align: 'left',
+        min: 50,
         max: 100,
         text:['100%','0'],
         realtime: false,
         calculable: true,
+        itemHeight: 120,
+        text: ['明暗程度： 百分比'],
+        textGap: 30,
         // color: ['orangered','yellow','lightskyblue']
         inRange: {
         	color: ['#F14937'],
             colorAlpha: [0.2, 1]
         },
         outOfRange: {
-            color: ['#F14937']
+            color: ['#fdfdfd']
         },
         controller: {
             inRange: {
@@ -69,7 +79,7 @@ option = {
                     areaColor: '#F16C42'
                 }
             },
-            data: dataMap.dataLiquidWrold['2005']
+            data: dataMap.dataLiquidWorld_fillEmpty['2005']
         }
     ]
 };

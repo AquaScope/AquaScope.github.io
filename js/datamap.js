@@ -5,54 +5,91 @@ var dataMap = {};
  * @param  {[type]} obj  [description]
  * @param  {[string]} type [设置要转换的格式：
  *                         默认为中国分省
- *                         wolrd为全球28个国家
+ *                         world为全球28个国家
+ *                         WORLD为组件支持的全球所有国家
  *                         area为中国分地区]
+ * @param  {[string]} fillempty  [回填数据缺失的条目]
  */
-function dataFormatter(obj, type) {
+function dataFormatter(data, type, fillEmpty) {
+    var pList;
+
+    var listChina = ['北京','天津','河北','山西','内蒙古','辽宁','吉林','黑龙江','上海','江苏','浙江','安徽','福建','江西','山东','河南','湖北','湖南','广东','广西','海南','重庆','四川','贵州','云南','西藏','陕西','甘肃','青海','宁夏','新疆'];
+    var listArea = ['西部地区', '东部地区', '中部地区', '东北地区'];
+    var listWorld = dataMap.worldList;
+    var list_world = ["East Timor", "China", "Canada", "Indonesia", "Guatemala", "Ecuador", "Costa Rica", "Mexico", "South Korea", "Nicaragua", "Papua New Guinea", "Panama", "Singapore", "New Zealand", "Japan", "Chile", "North Korea", "Cambodia", "Thailand", "Australia", "Peru", "United States of America", "Laos", "Philippines", "El Salvador", "Vietnam", "Malaysia", "Colombia", "Russia"];
+    var listWorld_item = dataMap.noValueWorldList;
+
     if( !type ) {
-        var pList = ['北京','天津','河北','山西','内蒙古','辽宁','吉林','黑龙江','上海','江苏','浙江','安徽','福建','江西','山东','河南','湖北','湖南','广东','广西','海南','重庆','四川','贵州','云南','西藏','陕西','甘肃','青海','宁夏','新疆'];
-        var temp;
-        for (var year = 2005; year <= 2014; year++) {
-            var max = 0;
-            var sum = 0;
-            temp = obj[year];
-            for (var i = 0, l = temp.length; i < l; i++) {
-                max = Math.max(max, temp[i]);
-                sum += temp[i];
-                obj[year][i] = {
-                    name : pList[i],
-                    value : temp[i]
-                }
-            }
-            obj[year + 'max'] = Math.floor(max / 100) * 100;
-            obj[year + 'sum'] = Math.floor(sum);
-        }
-        return obj;
+        pList = listChina;
+        return dataFormat(data, pList);
+
     } else {
         if (type === 'world') {
-            var pList = ["East Timor", "China", "Canada", "Indonesia", "Guatemala", "Ecuador", "Costa Rica", "Mexico", "South Korea", "Nicaragua", "Papua New Guinea", "Panama", "Singapore", "New Zealand", "Japan", "Chile", "North Korea", "Cambodia", "Thailand", "Australia", "Peru", "United States of America", "Laos", "Philippines", "El Salvador", "Vietnam", "Malaysia", "Colombia", "Russia"];
-        } else if (type === 'area') {
-            var pList = ['西部地区', '东部地区', '中部地区', '东北地区'];
-        }
+            pList = list_world;
+            return dataFormat(data, pList);
 
-        var temp;
-        for (var year = 2005; year <= 2014; year++) {
-            var max = 0;
-            var sum = 0;
-            temp = obj[year];
-            for (var i = 0, l = temp.length; i < l; i++) {
-                max = Math.max(max, temp[i]);
-                sum += temp[i];
-                obj[year][i] = {
-                    name : pList[i],
-                    value : temp[i]
+        } else if (type === 'WORLD' ) {
+            matchList = list_world;
+            item = listWorld_item;
+
+            if(fillEmpty) {
+                return dataFillEmpty(data, [matchList, item]);
+            }
+
+        } else if (type === 'area') {
+            pList = listArea;
+            return dataFormat(data, pList);
+        }
+    }
+}
+// 常规格式化
+function dataFormat(data, pList) {
+    var temp;
+    
+    // 深拷贝
+    var output = {};
+    $.extend(true, output, data);
+
+    for (var year = 2005; year <= 2014; year++) {
+        var max = 0;
+        var sum = 0;
+        temp = output[year];
+        for (var i = 0, l = temp.length; i < l; i++) {
+            max = Math.max(max, temp[i]);
+            sum += temp[i];
+            output[year][i] = {
+                name : pList[i],
+                value : temp[i]
+            }
+        }
+        output[year + 'max'] = Math.floor(max / 100) * 100;
+        output[year + 'sum'] = Math.floor(sum);
+    }
+
+    return output;
+}
+// fillEmpty 回填没有数据的数据项
+function dataFillEmpty(data, list) {
+    /**
+     * list[0] 预格式化data的列表名
+     * list[1] 有完整name且value为null的对象数组
+     */
+    var fillData = dataFormat(data, list[0]);
+    var output = {};
+    for (var year = 2005; year <= 2014; year++) {
+        output[year] = list[1];
+        if(fillData[year] instanceof Array) {
+            for(var i in output[year]) {
+                output[year][i].value = 0;
+                for(var j in fillData[year]) {
+                    if(output[year][i].name === fillData[year][j].name) {
+                        output[year][i].value = fillData[year][j].value;
+                    }
                 }
             }
-            obj[year + 'max'] = Math.floor(max / 100) * 100;
-            obj[year + 'sum'] = Math.floor(sum);
         }
-        return obj;
     }
+    return output;
 }
 
 /**
@@ -99,7 +136,7 @@ function area2year(item) {
  * [mixData 混合数据]
  * @param  {[Array]} list    [混合的对象组]
  * @param  {[boolean]} item    [是否只获取数据，不获取name]
- * @param  {[boolean]} addYear [是否在数据项中追加当前年份]
+ * @param  {[boolean]} addYear [是否在数据项中回写当前年份]
  */
 function mixData(list, item, addYear) {
     if (item) {
@@ -439,10 +476,10 @@ dataMap.dataWasteWater_area = dataFormatter(dataWasteWater_area, 'area');
 
 // 混合数据
 // 中国分省 [化学需氧量排放量 废水排放总量]
-dataMap.dataCOD_WasteWater = mixData([dataCOD, dataWasteWater]);
+dataMap.dataCOD_WasteWater = mixData([dataMap.dataCOD, dataMap.dataWasteWater]);
 
 // 中国分省 [水资源总量， 人均水资源]
-dataMap.dataLiquidResource_Personal = mixData([dataLiquidResource, dataLiquidPersonal]);
+dataMap.dataLiquidResource_Personal = mixData([dataMap.dataLiquidResource, dataMap.dataLiquidPersonal]);
 
 // 中国分地区 [化学需氧量排放量 废水排放总量]
 dataMap.dataCOD_WasteWater_area = mixData([dataMap.dataCOD_area, dataMap.dataWasteWater_area]);
@@ -452,23 +489,9 @@ dataMap.dataCOD_WasteWater_area_year = mixData([dataMap.dataCOD_area_year, dataM
 
 
 // 世界数据
-
-// old
-// dataMap.dataLiquidWorld = dataFormatter({
-//     2005:[86.3,81.3,96.1,37.1,100,100,100,100,95.7,88.6,94.3,99.8,91.4,99,96.7,97.9,91.1,99.6,96.4,87.3,82.3,92.1,90.5,96.2,96,94.9,98.3,95.1,90.2,62.2,86.5,91.9,97.8,89.7,81.9,97.3,98.4,82.1,91.4,95.2,94.3,95,80,92.9,95.5,99.8,52.9,96.6,98.7,100,84.5,60.6,93.6,94.1,82.9,82.2,82.3,72.3,100,99.9,56.8,91.7,86,95.5,60.2,84.5,97.3,95.8,93.7,95.6,60.9],
-//     2006:[87.4,81.9,96.6,37.5,100,100,100,100,96.1,88.9,94.7,99.8,92,99,97,98.1,92.3,99.6,96.6,88,82.8,92.4,90.6,96.4,96.4,95.1,98.3,95.1,91,62.9,86.4,92.1,97.8,89.6,82.5,97.5,98.5,83.8,91.7,95.6,94.6,95.4,80.1,93.4,96,99.8,55.1,96.6,98.8,100,85.2,60.4,93.6,94.3,83.7,83.5,82.8,73.5,100,100,59,92.1,86.9,95.9,60.9,85.9,97.5,96.2,93.8,95.8,62.4],
-//     2007:[88.5,82.6,97.1,37.9,100,100,100,100,96.4,89.2,95.2,99.8,92.5,99,97.3,98.4,93.5,99.6,96.7,88.7,83.3,92.7,90.7,96.6,96.9,95.2,98.3,95.1,91.8,63.5,86.3,92.2,97.9,89.5,83.1,97.6,98.7,85.4,92.1,95.9,94.8,95.7,80.2,93.8,96.5,99.8,57.4,96.6,98.9,100,85.9,60.2,93.7,94.5,84.6,84.7,83.3,74.6,100,100,61.2,92.6,87.7,96.3,61.5,87.3,97.7,96.5,93.9,95.9,63.8],
-//     2008:[89.5,83.2,97.6,38.3,100,100,100,100,96.7,89.5,95.6,99.8,93,99,97.6,98.6,94.7,99.5,96.9,89.4,83.9,92.9,90.8,96.8,97.3,95.3,98.3,95.1,92.6,64.1,86.2,92.4,97.9,89.4,83.7,97.8,98.8,87,92.4,96.2,94.9,96,80.3,94.3,97,99.7,59.7,96.6,99,100,86.6,59.9,93.7,94.6,85.4,86,83.7,75.8,100,100,63.3,93,88.5,96.8,62,88.6,97.9,96.8,94.1,96.1,65.2],
-//     2009:[90.5,83.8,97.6,38.7,100,100,100,100,97,89.8,96,99.8,93.6,99.1,97.9,98.7,96,99.5,97.1,90,84.4,93.2,90.9,97,97.7,95.5,98.3,95.1,93.4,64.8,86,92.5,97.9,89.3,84.3,97.9,99,88.7,92.8,96.5,95.1,96.4,80.3,94.7,97.5,99.7,61.9,96.6,99.1,100,87.3,59.6,93.7,94.8,86.2,87.2,84.2,76.9,100,100,65.4,93.5,89.3,97.2,62.5,89.9,98.1,97.1,94.2,96.2,66.7],
-//     2010:[91.4,84.5,97.6,39.1,100,100,100,100,97.3,90.1,96.4,99.8,94.1,99.1,98.2,98.9,97.2,99.5,97.2,90.7,84.9,93.5,91,97.2,97.7,95.6,98.3,95.1,94.2,65.4,85.9,92.7,97.9,89.2,85,98.1,99.1,90.3,93.1,96.9,95.2,96.7,80.4,95.1,98,99.7,64.2,96.6,99.2,100,88,59.3,93.7,95,86.9,88.4,84.6,78.1,100,100,67.5,93.9,90.1,97.6,62.9,91.3,98.2,97.4,94.3,96.3,68.2],
-//     2011:[92.3,85.1,97.6,39.5,100,100,100,100,97.7,90.5,96.8,99.8,94.6,99.1,98.5,99.1,98.5,99.5,97.4,91.4,85.4,93.8,91.1,97.3,97.7,95.8,98.3,95.1,95.1,66.1,85.7,92.8,97.9,89.1,85.6,98.2,99.3,91.9,93.4,97.2,95.3,97,80.5,95.6,98.5,99.7,66.5,96.6,99.3,100,88.7,58.9,93.8,95.1,87.7,89.7,85,79.2,100,100,69.5,94.4,90.9,98.1,63.3,92.6,98.4,97.8,94.4,96.5,69.7],
-//     2012:[93.2,85.7,97.6,39.9,100,100,100,100,97.9,90.8,97.1,99.8,95.1,99.1,98.7,99.3,99.3,99.5,97.5,92,85.9,94.1,91.2,97.5,97.7,96,98.3,95.1,95.9,66.7,85.4,92.9,97.9,89,86.2,98.4,99.4,93.4,93.7,97.5,0,97.4,80.5,95.6,98.5,99.7,68.8,96.6,99.4,100,89.3,58.5,93.8,95.1,88.5,90.9,85.5,80.3,100,100,71.5,94.8,91.6,98.5,63.7,93.8,98.6,98.1,94.5,96.6,71.2],
-//     2013:[94,86.2,0,39.9,100,100,100,100,98,91.1,97.5,99.8,95.6,99.2,99,99.5,99.5,99.5,97.5,92.7,86.4,94.3,91.3,97.6,97.7,96.2,98.3,95.1,96.7,66.8,85.2,93.1,97.9,89,86.8,98.4,99.6,95,94.1,97.8,0,97.4,80.6,95.6,98.5,99.7,71.1,96.6,99.5,100,90,58,93.8,95.1,89.2,92.1,85.9,80.4,100,100,73.5,94.8,92.4,99,64,95.1,98.8,98.1,94.6,96.8,71.4],
-//     2014:[94.8,86.8,0,40,100,100,100,100,98.2,91.5,97.8,99.8,96.1,99.2,99,99.6,99.5,99.5,97.5,92.7,86.9,94.6,91.3,97.7,97.7,96.3,98.3,95.1,97.5,66.8,85,93.1,97.9,89,86.9,98.4,99.7,96.6,94.4,98.1,0,97.4,80.7,95.7,98.5,99.7,73.4,96.6,99.6,100,90.6,57.5,93.8,95.1,90,93.3,86.3,80.5,100,100,75.5,94.8,93.1,99,64.2,96.4,98.9,98.1,94.6,96.9,71.7]
-// }, 'world');
-
+// 数据源
 // 改善的水源（获得人数占总人数的百分比）
-dataMap.dataLiquidWrold = dataFormatter({
+var dataLiquidWrold = {
     2005:[60.9,86.3,99.8,81.3,87.3,82.3,96.2,91.4,96.1,81.9,37.1,91.4,100,100,100,96.7,99.8,52.9,94.3,100,82.3,99,56.8,88.6,86,84.5,95.7,90.5,95.6],
     2006:[62.4,87.4,99.8,81.9,88,82.8,96.4,92,96.6,82.5,37.5,91.7,100,100,100,97,99.8,55.1,94.7,100,82.8,99,59,88.9,86.9,85.9,96.1,90.6,95.8],
     2007:[63.8,88.5,99.8,82.6,88.7,83.3,96.6,92.5,97.1,83.1,37.9,92.1,100,100,100,97.3,99.8,57.4,95.2,100,83.3,99,61.2,89.2,87.7,87.3,96.4,90.7,95.9],
@@ -541,11 +564,202 @@ dataMap.dataLiquidWrold = dataFormatter({
     // Malaysia
     // Colombia
     // Russia
-}, 'world')
+}
 
-// console.log(dataMap.dataLiquidWrold);
-// console.log(dataMap.dataCOD_WasteWater_area_year);
+// 世界国家名单
+dataMap.worldList = [
+    "Afghanistan", "Angola", "Albania", "United Arab Emirates", "Argentina", "Armenia", "French Southern and Antarctic Lands", "Australia", "Austria", "Azerbaijan", "Burundi", "Belgium", "Benin", "Burkina Faso", "Bangladesh", "Bulgaria", "The Bahamas", "Bosnia and Herzegovina", "Belarus", "Belize", "Bermuda", "Bolivia", "Brazil", "Brunei", "Bhutan", "Botswana", "Central African Republic", "Canada", "Switzerland", "Chile", "China", "Ivory Coast", "Cameroon", "Democratic Republic of the Congo", "Republic of the Congo", "Colombia", "Costa Rica", "Cuba", "Northern Cyprus", "Cyprus", "Czech Republic", "Germany", "Djibouti", "Denmark", "Dominican Republic", "Algeria", "Ecuador", "Egypt", "Eritrea", "Spain", "Estonia", "Ethiopia", "Finland", "Fiji", "Falkland Islands", "France", "Gabon", "United Kingdom", "Georgia", "Ghana", "Guinea", "Gambia", "Guinea Bissau", "Equatorial Guinea", "Greece", "Greenland", "Guatemala", "French Guiana", "Guyana", "Honduras", "Croatia", "Haiti", "Hungary", "Indonesia", "India", "Ireland", "Iran", "Iraq", "Iceland", "Israel", "Italy", "Jamaica", "Jordan", "Japan", "Kazakhstan", "Kenya", "Kyrgyzstan", "Cambodia", "South Korea", "Kosovo",
+    "Kuwait", "Laos", "Lebanon", "Liberia", "Libya", "Sri Lanka", "Lesotho", "Lithuania", "Luxembourg", "Latvia", "Morocco", "Moldova", "Madagascar", "Mexico", "Macedonia", "Mali", "Myanmar", "Montenegro", "Mongolia", "Mozambique", "Mauritania", "Malawi", "Malaysia", "Namibia", "New Caledonia", "Niger", "Nigeria", "Nicaragua", "Netherlands", "Norway", "Nepal", "New Zealand", "Oman", "Pakistan", "Panama", "Peru", "Philippines", "Papua New Guinea", "Poland", "Puerto Rico", "North Korea", "Portugal", "Paraguay", "Qatar", "Romania", "Russia", "Rwanda", "Western Sahara", "Saudi Arabia", "Sudan", "South Sudan", "Senegal", "Solomon Islands", "Sierra Leone", "El Salvador", "Somaliland", "Somalia", "Republic of Serbia", "Suriname", "Slovakia",
+    "Slovenia", "Sweden", "Swaziland", "Syria", "Chad", "Togo", "Thailand", "Tajikistan", "Turkmenistan", "East Timor", "Trinidad and Tobago", "Tunisia", "Turkey", "United Republic of Tanzania", "Uganda", "Ukraine", "Uruguay", "United States of America", "Uzbekistan", "Venezuela", "Vietnam", "Vanuatu", "West Bank", "Yemen", "South Africa", "Zambia", "Zimbabwe"
+];
+dataMap.noValueWorldList = [
+    {name: 'Afghanistan', value: null },
+    {name: 'Angola', value: null },
+    {name: 'Albania', value: null },
+    {name: 'United Arab Emirates', value: null },
+    {name: 'Argentina', value: null },
+    {name: 'Armenia', value: null },
+    {name: 'French Southern and Antarctic Lands', value: null },
+    {name: 'Australia', value: null },
+    {name: 'Austria', value: null },
+    {name: 'Azerbaijan', value: null },
+    {name: 'Burundi', value: null },
+    {name: 'Belgium', value: null },
+    {name: 'Benin', value: null },
+    {name: 'Burkina Faso', value: null },
+    {name: 'Bangladesh', value: null },
+    {name: 'Bulgaria', value: null },
+    {name: 'The Bahamas', value: null },
+    {name: 'Bosnia and Herzegovina', value: null },
+    {name: 'Belarus', value: null },
+    {name: 'Belize', value: null },
+    {name: 'Bermuda', value: null },
+    {name: 'Bolivia', value: null },
+    {name: 'Brazil', value: null },
+    {name: 'Brunei', value: null },
+    {name: 'Bhutan', value: null },
+    {name: 'Botswana', value: null },
+    {name: 'Central African Republic', value: null },
+    {name: 'Canada', value: null },
+    {name: 'Switzerland', value: null },
+    {name: 'Chile', value: null },
+    {name: 'China', value: null },
+    {name: 'Ivory Coast', value: null },
+    {name: 'Cameroon', value: null },
+    {name: 'Democratic Republic of the Congo', value: null },
+    {name: 'Republic of the Congo', value: null },
+    {name: 'Colombia', value: null },
+    {name: 'Costa Rica', value: null },
+    {name: 'Cuba', value: null },
+    {name: 'Northern Cyprus', value: null },
+    {name: 'Cyprus', value: null },
+    {name: 'Czech Republic', value: null },
+    {name: 'Germany', value: null },
+    {name: 'Djibouti', value: null },
+    {name: 'Denmark', value: null },
+    {name: 'Dominican Republic', value: null },
+    {name: 'Algeria', value: null },
+    {name: 'Ecuador', value: null },
+    {name: 'Egypt', value: null },
+    {name: 'Eritrea', value: null },
+    {name: 'Spain', value: null },
+    {name: 'Estonia', value: null },
+    {name: 'Ethiopia', value: null },
+    {name: 'Finland', value: null },
+    {name: 'Fiji', value: null },
+    {name: 'Falkland Islands', value: null },
+    {name: 'France', value: null },
+    {name: 'Gabon', value: null },
+    {name: 'United Kingdom', value: null },
+    {name: 'Georgia', value: null },
+    {name: 'Ghana', value: null },
+    {name: 'Guinea', value: null },
+    {name: 'Gambia', value: null },
+    {name: 'Guinea Bissau', value: null },
+    {name: 'Equatorial Guinea', value: null },
+    {name: 'Greece', value: null },
+    {name: 'Greenland', value: null },
+    {name: 'Guatemala', value: null },
+    {name: 'French Guiana', value: null },
+    {name: 'Guyana', value: null },
+    {name: 'Honduras', value: null },
+    {name: 'Croatia', value: null },
+    {name: 'Haiti', value: null },
+    {name: 'Hungary', value: null },
+    {name: 'Indonesia', value: null },
+    {name: 'India', value: null },
+    {name: 'Ireland', value: null },
+    {name: 'Iran', value: null },
+    {name: 'Iraq', value: null },
+    {name: 'Iceland', value: null },
+    {name: 'Israel', value: null },
+    {name: 'Italy', value: null },
+    {name: 'Jamaica', value: null },
+    {name: 'Jordan', value: null },
+    {name: 'Japan', value: null },
+    {name: 'Kazakhstan', value: null },
+    {name: 'Kenya', value: null },
+    {name: 'Kyrgyzstan', value: null },
+    {name: 'Cambodia', value: null },
+    {name: 'South Korea', value: null },
+    {name: 'Kosovo', value: null },
+    {name: 'Kuwait', value: null },
+    {name: 'Laos', value: null },
+    {name: 'Lebanon', value: null },
+    {name: 'Liberia', value: null },
+    {name: 'Libya', value: null },
+    {name: 'Sri Lanka', value: null },
+    {name: 'Lesotho', value: null },
+    {name: 'Lithuania', value: null },
+    {name: 'Luxembourg', value: null },
+    {name: 'Latvia', value: null },
+    {name: 'Morocco', value: null },
+    {name: 'Moldova', value: null },
+    {name: 'Madagascar', value: null },
+    {name: 'Mexico', value: null },
+    {name: 'Macedonia', value: null },
+    {name: 'Mali', value: null },
+    {name: 'Myanmar', value: null },
+    {name: 'Montenegro', value: null },
+    {name: 'Mongolia', value: null },
+    {name: 'Mozambique', value: null },
+    {name: 'Mauritania', value: null },
+    {name: 'Malawi', value: null },
+    {name: 'Malaysia', value: null },
+    {name: 'Namibia', value: null },
+    {name: 'New Caledonia', value: null },
+    {name: 'Niger', value: null },
+    {name: 'Nigeria', value: null },
+    {name: 'Nicaragua', value: null },
+    {name: 'Netherlands', value: null },
+    {name: 'Norway', value: null },
+    {name: 'Nepal', value: null },
+    {name: 'New Zealand', value: null },
+    {name: 'Oman', value: null },
+    {name: 'Pakistan', value: null },
+    {name: 'Panama', value: null },
+    {name: 'Peru', value: null },
+    {name: 'Philippines', value: null },
+    {name: 'Papua New Guinea', value: null },
+    {name: 'Poland', value: null },
+    {name: 'Puerto Rico', value: null },
+    {name: 'North Korea', value: null },
+    {name: 'Portugal', value: null },
+    {name: 'Paraguay', value: null },
+    {name: 'Qatar', value: null },
+    {name: 'Romania', value: null },
+    {name: 'Russia', value: null },
+    {name: 'Rwanda', value: null },
+    {name: 'Western Sahara', value: null },
+    {name: 'Saudi Arabia', value: null },
+    {name: 'Sudan', value: null },
+    {name: 'South Sudan', value: null },
+    {name: 'Senegal', value: null },
+    {name: 'Solomon Islands', value: null },
+    {name: 'Sierra Leone', value: null },
+    {name: 'El Salvador', value: null },
+    {name: 'Somaliland', value: null },
+    {name: 'Somalia', value: null },
+    {name: 'Republic of Serbia', value: null },
+    {name: 'Suriname', value: null },
+    {name: 'Slovakia', value: null },
+    {name: 'Slovenia', value: null },
+    {name: 'Sweden', value: null },
+    {name: 'Swaziland', value: null },
+    {name: 'Syria', value: null },
+    {name: 'Chad', value: null },
+    {name: 'Togo', value: null },
+    {name: 'Thailand', value: null },
+    {name: 'Tajikistan', value: null },
+    {name: 'Turkmenistan', value: null },
+    {name: 'East Timor', value: null },
+    {name: 'Trinidad and Tobago', value: null },
+    {name: 'Tunisia', value: null },
+    {name: 'Turkey', value: null },
+    {name: 'United Republic of Tanzania', value: null },
+    {name: 'Uganda', value: null },
+    {name: 'Ukraine', value: null },
+    {name: 'Uruguay', value: null },
+    {name: 'United States of America', value: null },
+    {name: 'Uzbekistan', value: null },
+    {name: 'Venezuela', value: null },
+    {name: 'Vietnam', value: null },
+    {name: 'Vanuatu', value: null },
+    {name: 'West Bank', value: null },
+    {name: 'Yemen', value: null },
+    {name: 'South Africa', value: null },
+    {name: 'Zambia', value: null },
+    {name: 'Zimbabwe', value: null }
+];
 
+// 整理后的数据
+// 改善的水源（获得人数占总人数的百分比）
+dataMap.dataLiquidWrold = dataFormatter(dataLiquidWrold, 'world');
+
+// 回填后的世界数据
+dataMap.dataLiquidWorld_fillEmpty = dataFormatter(dataLiquidWrold, 'WORLD', true);
+
+console.log(dataMap.dataLiquidWorld_fillEmpty);
 
 
 // function dataMix(list) {
@@ -564,3 +778,11 @@ dataMap.dataLiquidWrold = dataFormatter({
 //     }
 //     return mixData;
 // }
+// 
+
+
+
+
+
+
+
