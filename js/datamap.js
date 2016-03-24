@@ -182,6 +182,8 @@ function filterDdata(list, filter, inverse) {
         }
     }
 }
+// 数据过滤
+// 值为负数的数据项
 function filterMinus(list) {
     var result = {};
     var flist = [];

@@ -102,67 +102,67 @@ option= {
             }
         },
         visualMap: [
-                {
-                    left: 'right',
-                    top: '10%',
-                    dimension: 2,
-                    min: 0,
-                    max: 4000,
-                    itemWidth: 30,
-                    itemHeight: 120,
-                    calculable: true,
-                    precision: 0.1,
-                    text: ['圆形大小：水资源总量（亿立方米）'],
-                    textGap: 30,
-                    textStyle: {
-                        color: '#1B8BFF'
-                    },
-                    inRange: {
-                        symbolSize: [10, 100]
-                    },
-                    outOfRange: {
-                        symbolSize: [10, 100],
-                        color: ['rgba(255,255,255,.5)']
-                    },
-                    controller: {
-                        inRange: {
-                            color: ['#1B8BFF']
-                        },
-                        outOfRange: {
-                            color: ['#eee']
-                        }
-                    }
+            {
+                left: 'right',
+                top: '10%',
+                dimension: 2,
+                min: 0,
+                max: 4000,
+                itemWidth: 30,
+                itemHeight: 120,
+                calculable: true,
+                precision: 0.1,
+                text: ['圆形大小：水资源总量（亿立方米）'],
+                textGap: 30,
+                textStyle: {
+                    color: '#1B8BFF'
                 },
-                {
-                    left: 'right',
-                    bottom: '5%',
-                    dimension: 3,
-                    min: 0,
-                    max: 5000,
-                    itemHeight: 120,
-                    calculable: true,
-                    precision: 0.1,
-                    text: ['明暗：人均水资源占有量（立方米）'],
-                    textGap: 30,
-                    textStyle: {
-                        color: '#1B8BFF'
-                    },
+                inRange: {
+                    symbolSize: [10, 100]
+                },
+                outOfRange: {
+                    symbolSize: [10, 100],
+                    color: ['rgba(255,255,255,.5)']
+                },
+                controller: {
                     inRange: {
-                        colorAlpha: [0.2, 1],
+                        color: ['#1B8BFF']
                     },
                     outOfRange: {
-                        color: ['rgba(255,255,255,.5)']
-                    },
-                    controller: {
-                        inRange: {
-                            color: ['#1B8BFF']
-                        },
-                        outOfRange: {
-                            color: ['#eee']
-                        }
+                        color: ['#eee']
                     }
                 }
-            ],
+            },
+            {
+                left: 'right',
+                bottom: '5%',
+                dimension: 3,
+                min: 0,
+                max: 5000,
+                itemHeight: 120,
+                calculable: true,
+                precision: 0.1,
+                text: ['明暗：人均水资源占有量（立方米）'],
+                textGap: 30,
+                textStyle: {
+                    color: '#1B8BFF'
+                },
+                inRange: {
+                    colorAlpha: [0.2, 1],
+                },
+                outOfRange: {
+                    color: ['rgba(255,255,255,.5)']
+                },
+                controller: {
+                    inRange: {
+                        color: ['#1B8BFF']
+                    },
+                    outOfRange: {
+                        color: ['#eee']
+                    }
+                }
+            }
+        ],
         series: [
             {
                 name: '水资源情况',
