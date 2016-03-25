@@ -119,7 +119,7 @@ option= {
                 text: ['圆形大小：水资源总量（亿立方米）'],
                 textGap: 30,
                 textStyle: {
-                    color: '#1B8BFF'
+                    color: 'rgba(68,172,224,1)'
                 },
                 inRange: {
                     symbolSize: [10, 100]
@@ -130,7 +130,7 @@ option= {
                 },
                 controller: {
                     inRange: {
-                        color: ['#1B8BFF']
+                        color: ['rgba(68,172,224,1)']
                     },
                     outOfRange: {
                         color: ['#fff']
@@ -150,7 +150,7 @@ option= {
                 text: ['明暗：人均水资源占有量（立方米）'],
                 textGap: 30,
                 textStyle: {
-                    color: '#1B8BFF'
+                    color: 'rgba(68,172,224,1)'
                 },
                 inRange: {
                     colorAlpha: [0.2, 1],
@@ -160,7 +160,7 @@ option= {
                 },
                 controller: {
                     inRange: {
-                        color: ['#1B8BFF']
+                        color: ['rgba(68,172,224,1)']
                     },
                     outOfRange: {
                         color: ['#eee']
@@ -188,7 +188,7 @@ option= {
                 },
                 itemStyle: {
                     normal: {
-                        color: '#1B8BFF'
+                        color: 'rgba(68,172,224,1)'
                     }
                 }
             }

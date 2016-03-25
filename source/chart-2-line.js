@@ -79,7 +79,12 @@ option = {
 					dataMap.dataLiquidEcology['2012sum'],
 					dataMap.dataLiquidEcology['2013sum'],
 					dataMap.dataLiquidEcology['2014sum']
-				]
+				],
+				itemStyle: {
+				    normal: {
+				        color: 'rgba(120,120,214,1)'
+				    }
+				}
 			},
 			{
 				name: '工业用水', type: 'line', stack: true, areaStyle: {normal: {}},
@@ -94,7 +99,12 @@ option = {
 					dataMap.dataLiquidIndustry['2012sum'],
 					dataMap.dataLiquidIndustry['2013sum'],
 					dataMap.dataLiquidIndustry['2014sum']
-				]
+				],
+				itemStyle: {
+				    normal: {
+				        color: 'rgba(68,172,224,1)'
+				    }
+				}
 			},
 			{
 				name: '农业用水', type: 'line', stack: true, areaStyle: {normal: {}},
@@ -109,7 +119,12 @@ option = {
 					dataMap.dataLiquidAgriculture['2012sum'],
 					dataMap.dataLiquidAgriculture['2013sum'],
 					dataMap.dataLiquidAgriculture['2014sum']
-				]
+				],
+				itemStyle: {
+				    normal: {
+				        color: 'rgba(69,203,221,1)'
+				    }
+				}
 			},
 			{
 				name: '生活用水', type: 'line', stack: true, areaStyle: {normal: {}},
@@ -124,7 +139,12 @@ option = {
 					dataMap.dataLiquidLiving['2012sum'],
 					dataMap.dataLiquidLiving['2013sum'],
 					dataMap.dataLiquidLiving['2014sum']
-				]
+				],
+				itemStyle: {
+				    normal: {
+				        color: 'rgba(70,198,131,1)'
+				    }
+				}
 			},
 			{
 				name: '全国水资源总量', type: 'line',
@@ -140,7 +160,12 @@ option = {
 					dataMap.dataLiquidResource['2012sum'],
 					dataMap.dataLiquidResource['2013sum'],
 					dataMap.dataLiquidResource['2014sum']
-				]
+				],
+				itemStyle: {
+				    normal: {
+				        color: 'rgba(120,120,214,1)'
+				    }
+				}
 			},
 			{
 				name: '全国地表水资源总量', type: 'line',
@@ -156,78 +181,83 @@ option = {
 					dataMap.dataSurfaceLiquid['2012sum'],
 					dataMap.dataSurfaceLiquid['2013sum'],
 					dataMap.dataSurfaceLiquid['2014sum']
-				]
+				],
+				itemStyle: {
+				    normal: {
+				        color: 'rgba(239,215,72,1)'
+				    }
+				}
 			}
 		]
 	},
 	media: [
-	{
-	    option: {
-	        grid: {
-	        	top: 120,
-	            left: '3%',
-	            right: '3%',
-	            bottom: 10,
-	            containLabel: true
-	        },
-	    }
-	},
-	{
-	    query: {maxWidth: 640},
-	    option: {
-	    	title: {
-	    		subtext: '数据来自: 中华人民共和国国家统计局\n单位：亿立方米\n左侧轴线为用水总量\n右侧轴线为水资源总量',
-                sublink: null,
-	    		textStyle: {
-	    			fontSize: 14
-	    		},
-	    		left: 'left'
-	    	},
-	    	tooltip: {
-	    	    show: false,
-	    	},
-	        legend: {
-	        	top: 80,
-	            left: 'left',
-	            itemGap: 5
-	        },
-	        grid: {
-	            top: 160,
-	            left: 20,
-	            right: 20,
-	            bottom: 24
-	        },
-	        xAxis: {
-	            nameLocation: 'middle',
-	            splitLine: {
-	            	show: false
-	            },
-	            axisLabel: {
-	            	interval: 2
-	            },
-	            axisTick: {
-	            	interval: 0
-	            }
-	        },
-	        yAxis: [
-	        	{	
-	        		name: '',
-	        		axisLabel: {
-	        			inside: true
-	        		}
+		{
+		    option: {
+		        grid: {
+		        	top: 120,
+		            left: '3%',
+		            right: '3%',
+		            bottom: 10,
+		            containLabel: true
 		        },
-		        {
-	        		name: '',
-		        	axisLabel: {
-		        		inside: true,
-		        	},
-		        	splitLine: {
-		        		show: false
-		        	}
+		    }
+		},
+		{
+		    query: {maxWidth: 640},
+		    option: {
+		    	title: {
+		    		subtext: '数据来自: 中华人民共和国国家统计局\n单位：亿立方米\n左侧轴线为用水总量\n右侧轴线为水资源总量',
+	                sublink: null,
+		    		textStyle: {
+		    			fontSize: 14
+		    		},
+		    		left: 'left'
+		    	},
+		    	tooltip: {
+		    	    show: false,
+		    	},
+		        legend: {
+		        	top: 80,
+		            left: 'left',
+		            itemGap: 5
 		        },
-	        ]
-	    }
-	}
+		        grid: {
+		            top: 160,
+		            left: 20,
+		            right: 20,
+		            bottom: 24
+		        },
+		        xAxis: {
+		            nameLocation: 'middle',
+		            splitLine: {
+		            	show: false
+		            },
+		            axisLabel: {
+		            	interval: 2
+		            },
+		            axisTick: {
+		            	interval: 0
+		            }
+		        },
+		        yAxis: [
+		        	{	
+		        		name: '',
+		        		axisLabel: {
+		        			inside: true
+		        		}
+			        },
+			        {
+		        		name: '',
+			        	axisLabel: {
+			        		inside: true,
+			        	},
+			        	splitLine: {
+			        		show: false
+			        	}
+			        },
+		        ]
+		    }
+		}
 	]
 };
 

@@ -41,11 +41,11 @@ options = {
 	    tooltip: {
 	        trigger: 'item',
 	        formatter: function (params) {
-	            if(params.value != 0) {
+	            if(params.data) {
 	            	return params.name + ' : ' + params.value + '%';
 	            } else {
 	            	var rst = '暂无数据';
-	            	return params.name + ' : ' + rst;
+	            	return rst;
 	            }
 	        }
 	    },
@@ -72,7 +72,7 @@ options = {
 	        text: ['明暗程度： 百分比'],
 	        textGap: 30,
 	        inRange: {
-	        	color: ['#fdfdfd', '#7E97FF','#4E5E9E'],
+	        	color: ['#7E97FF','#4E5E9E'],
 	        },
 	        outOfRange: {
 	            color: ['#fdfdfd']
@@ -111,61 +111,61 @@ options = {
         {
             title: {text: '改善水源情况'},
             series: [
-                { data: dataMap.dataLiquidWorld_fillEmpty['2005'] } 
+                { data: dataMap.dataLiquidWrold['2005'] } 
         	]
         },
         {
             title: {text: '改善水源情况'},
             series: [
-                { data: dataMap.dataLiquidWorld_fillEmpty['2006'] } 
+                { data: dataMap.dataLiquidWrold['2006'] } 
         	]
         },
         {
             title: {text: '改善水源情况'},
             series: [
-                { data: dataMap.dataLiquidWorld_fillEmpty['2007'] } 
+                { data: dataMap.dataLiquidWrold['2007'] } 
         	]
         },
         {
             title: {text: '改善水源情况'},
             series: [
-                { data: dataMap.dataLiquidWorld_fillEmpty['2008'] } 
+                { data: dataMap.dataLiquidWrold['2008'] } 
         	]
         },
         {
             title: {text: '改善水源情况'},
             series: [
-                { data: dataMap.dataLiquidWorld_fillEmpty['2009'] } 
+                { data: dataMap.dataLiquidWrold['2009'] } 
         	]
         },
         {
             title: {text: '改善水源情况'},
             series: [
-                { data: dataMap.dataLiquidWorld_fillEmpty['2010'] } 
+                { data: dataMap.dataLiquidWrold['2010'] } 
         	]
         },
         {
             title: {text: '改善水源情况'},
             series: [
-                { data: dataMap.dataLiquidWorld_fillEmpty['2011'] } 
+                { data: dataMap.dataLiquidWrold['2011'] } 
         	]
         },
         {
             title: {text: '改善水源情况'},
             series: [
-                { data: dataMap.dataLiquidWorld_fillEmpty['2012'] } 
+                { data: dataMap.dataLiquidWrold['2012'] } 
         	]
         },
         {
             title: {text: '改善水源情况'},
             series: [
-                { data: dataMap.dataLiquidWorld_fillEmpty['2013'] } 
+                { data: dataMap.dataLiquidWrold['2013'] } 
         	]
         },
         {
             title: {text: '改善水源情况'},
             series: [
-                { data: dataMap.dataLiquidWorld_fillEmpty['2014'] } 
+                { data: dataMap.dataLiquidWrold['2014'] } 
         	]
         },
     ]
