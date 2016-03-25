@@ -46,7 +46,8 @@ dd {
 	
 	.content {
 		&-wapper{.box-inner;}
-
+	
+		// overflow: hidden;
 		margin: 10% auto;
 		border: 4px solid #efefef;
 		padding: 10px 30px;
@@ -79,12 +80,54 @@ dd {
 	}
 }
 
+#section-0 {
+	.content {
+		overflow: hidden;
+		.float-text {
+			float: left;
+			width: 45%;
+			font-size: 14px;
+			line-height: 32px;
+			color: #333;
+
+			p {
+				margin: 20px 0;
+			}
+
+			&:first-child {
+				text-align: justify;
+				margin-right: 10%;
+			}
+
+			&:nth-child(2) {
+				font-family: Helvetica, sans-serif;
+			}
+
+			.line {
+				border-top: 2px solid #677CD1;
+				width: 20%;
+			}
+		}
+
+		@media screen and (max-width: @mobile-width) {
+			.float-text {
+				width: 80%;
+				margin: 0 10%;
+
+				&:nth-child(2) {
+					display: none;
+				}
+			}		
+		}
+	}
+}
+
 #section-1 {
 	.viewbox {
 		background: url('../images/shortage.jpg') 50% 0 no-repeat fixed;
 		
 		.float-text {
-			float: right;
+			float: left;
 		}
 	}
 }
@@ -114,7 +157,7 @@ dd {
 		background: url('../images/COD-bg.jpg') 50% 0 no-repeat fixed;
 
 		.float-text {
-			float: left;
+			float: right;
 		}
 	}
 }
@@ -160,6 +203,10 @@ dd {
 			dt {
 				padding-bottom: 10px;
 				font-size: 24px;
+			}
+
+			dd {
+				text-align: justify;
 			}
 
 		}

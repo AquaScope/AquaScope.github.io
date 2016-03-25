@@ -171,7 +171,7 @@ option = {
             option: {
                 title: {
                     text: '2005年-2014年全国分地区废水排放量\n与化学需氧量排放量分布',
-                    subtext: '数据来自: 中华人民共和国国家统计局\n单位：万吨\n拖拽或缩放底部滑块可查看全部数据',
+                    subtext: '数据来自: 中华人民共和国国家统计局\n单位：万吨\n明暗程度为年份变化',
                     textStyle: {
                         fontSize: 14
                     },
@@ -194,7 +194,7 @@ option = {
                     top: 140,
                     left: 0,
                     right: 10,
-                    bottom: 50
+                    bottom: 0
                 },
                 visualMap: [
                     {
@@ -215,8 +215,7 @@ option = {
                     },
                 },
                 dataZoom: {
-                    start: 20,
-                    end: 60
+                    show: false
                 }
             }
         }

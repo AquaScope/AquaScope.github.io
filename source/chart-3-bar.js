@@ -187,7 +187,9 @@ options = {
                     right: 0,
                     top: 100,
                     bottom: 0,
-                    width: 55
+                    width: 55,
+                    autoPlay: false,
+                    playInterval: 3000
                 }
             }
         }

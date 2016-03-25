@@ -61,11 +61,44 @@ dd {
     font-size: 16px;
   }
 }
+#section-0 .content {
+  overflow: hidden;
+}
+#section-0 .content .float-text {
+  float: left;
+  width: 45%;
+  font-size: 14px;
+  line-height: 32px;
+  color: #333;
+}
+#section-0 .content .float-text p {
+  margin: 20px 0;
+}
+#section-0 .content .float-text:first-child {
+  text-align: justify;
+  margin-right: 10%;
+}
+#section-0 .content .float-text:nth-child(2) {
+  font-family: Helvetica, sans-serif;
+}
+#section-0 .content .float-text .line {
+  border-top: 2px solid #677CD1;
+  width: 20%;
+}
+@media screen and (max-width: 640px) {
+  #section-0 .content .float-text {
+    width: 80%;
+    margin: 0 10%;
+  }
+  #section-0 .content .float-text:nth-child(2) {
+    display: none;
+  }
+}
 #section-1 .viewbox {
   background: url('../images/shortage.jpg') 50% 0 no-repeat fixed;
 }
 #section-1 .viewbox .float-text {
-  float: right;
+  float: left;
 }
 #section-2 .viewbox {
   background: url('../images/waterTap.jpg') 50% 0 no-repeat fixed;
@@ -83,7 +116,7 @@ dd {
   background: url('../images/COD-bg.jpg') 50% 0 no-repeat fixed;
 }
 #section-4 .viewbox .float-text {
-  float: left;
+  float: right;
 }
 #section-5 .viewbox {
   background: url('../images/swimmingPool.jpg') 50% 0 no-repeat fixed;
@@ -138,6 +171,14 @@ dd {
 #section-5 .viewbox .float-text dt {
   padding-bottom: 10px;
   font-size: 24px;
+}
+#section-0 .viewbox .float-text dd,
+#section-1 .viewbox .float-text dd,
+#section-2 .viewbox .float-text dd,
+#section-3 .viewbox .float-text dd,
+#section-4 .viewbox .float-text dd,
+#section-5 .viewbox .float-text dd {
+  text-align: justify;
 }
 #section-0 .viewbox-static,
 #section-1 .viewbox-static,
