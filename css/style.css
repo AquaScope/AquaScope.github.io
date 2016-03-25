@@ -223,6 +223,9 @@ dd {
   #chart-4-china-scatter {
     height: 450px !important;
   }
+  #chart-5-world-map {
+    height: 300px !important;
+  }
 }
 #footer .content {
   padding: 20px 80px 60px;

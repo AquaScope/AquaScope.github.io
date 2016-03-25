@@ -102,7 +102,7 @@ options = {
 	            },
 	            itemStyle: {
 	                normal: {
-	                    color: '#2F4554'
+	                    color: 'rgba(82,161,212,1)'
 	                }
 	            },
 			},
@@ -118,7 +118,7 @@ options = {
 	            },
 	            itemStyle: {
 	                normal: {
-	                    color: '#61A0A8'
+	                    color: 'rgba(91,206,162,1)'
 	                }
 	            },
 			},
@@ -134,7 +134,7 @@ options = {
 	            },
 	            itemStyle: {
 	                normal: {
-	                    color: '#C23531'
+	                    color: 'rgba(239,215,72,1)'
 	                }
 	            },
 			}

@@ -21,6 +21,9 @@ var convertData = function (data) {
     return res;
 };
 
+var _chart_1 = {};
+_chart_1.symbolSize = (document.documentElement.clientWidth > 640) ? [10, 120] : [5, 40];
+
 option= {
     baseOption: {
         timeline: {
@@ -122,10 +125,10 @@ option= {
                     color: 'rgba(68,172,224,1)'
                 },
                 inRange: {
-                    symbolSize: [10, 100]
+                    symbolSize: _chart_1.symbolSize
                 },
                 outOfRange: {
-                    symbolSize: [10, 100],
+                    symbolSize: _chart_1.symbolSize,
                     color: ['rgba(255,255,255,.5)']
                 },
                 controller: {

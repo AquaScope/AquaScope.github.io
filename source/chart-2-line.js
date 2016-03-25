@@ -163,7 +163,7 @@ option = {
 				],
 				itemStyle: {
 				    normal: {
-				        color: 'rgba(120,120,214,1)'
+				        color: 'rgba(68,172,224,1)'
 				    }
 				}
 			},

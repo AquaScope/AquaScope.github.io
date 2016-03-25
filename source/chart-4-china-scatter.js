@@ -4,7 +4,7 @@ option = {
     baseOption: {
             title : {
                 text: '2005年-2014年全国分地区废水排放量与化学需氧量排放量分布',
-                subtext: '数据来自: 中华人民共和国国家统计局',
+                subtext: '数据来自: 中华人民共和国国家统计局\n\n为计算方便，内蒙古自治区被归为东北地区',
                 sublink: 'http://data.stats.gov.cn/',
             },
             grid: {

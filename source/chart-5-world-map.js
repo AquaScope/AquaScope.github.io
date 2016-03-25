@@ -31,12 +31,15 @@ options = {
 		    }
 		},
 	    title: {
-	        text: '改善水源情况',
+	        text: '太平洋地区获得改善水源的人口比例',
 	        subtext: '数据来自: WHO/UNICEF Joint Monitoring Programme (JMP) for Water Supply and Sanitation.',
 	        sublink: 'http://www.wssinfo.org/',
 	        left: 'center',
 	        top: 'top',
 	        backgroundColor: '#fff'
+	    },
+	    textStyle: {
+	    	fontFamily: "Microsoft Yahei"
 	    },
 	    tooltip: {
 	        trigger: 'item',
@@ -63,23 +66,23 @@ options = {
 	    visualMap: {
 	    	left: 'right',
 	    	align: 'left',
-	        min: 50,
+	        min: 30,
 	        max: 100,
-	        text:['100%','50%'],
+	        text:['100%','30%%'],
 	        realtime: false,
 	        calculable: true,
 	        itemHeight: 120,
 	        text: ['明暗程度： 百分比'],
 	        textGap: 30,
 	        inRange: {
-	        	color: ['#7E97FF','#4E5E9E'],
+	        	color: ['rgba(68,172,224,0.1)','rgba(42,135,198,1)'],
 	        },
 	        outOfRange: {
 	            color: ['#fdfdfd']
 	        },
 	        controller: {
 	            inRange: {
-	                color: ['#7E97FF', '#4E5E9E']
+	                color: ['rgba(68,172,224,0.1)', 'rgba(42,135,198,1)']
 	            },
 	            outOfRange: {
 	                color: ['#eee']
@@ -88,7 +91,7 @@ options = {
 	    },
 	    series: [
 	        {
-	            name: '改善水源情况',
+	            name: '太平洋地区获得改善水源的人口比例',
 	            type: 'map',
 	            mapType: 'world',
 	            // roam: true,
@@ -107,63 +110,97 @@ options = {
 	        }
 	    ]
 	},
+	media: [
+        {
+            option: {
+            }
+        },
+        {
+            query: {maxWidth: 640},
+            option: {
+                title: {
+                    textStyle: {
+                        fontSize: 14
+                    },
+                    subtext: '数据来自: 中华人民共和国国家统计局\n数值为百分比',
+                    sublink: null,
+                    left: 'left'
+                },
+                tooltip: {
+                    show: false,
+                },
+                visualMap: [
+                    {
+                        show: false,
+                    }
+                ],
+                timeline: {
+                    right: 0,
+                    left: 0,
+                    bottom: 0,
+                    autoPlay: false,
+                    playInterval: 2000
+                }
+            }
+        }
+	],
 	options: [
         {
-            title: {text: '改善水源情况'},
+            title: {text: '2005年太平洋地区获得改善水源的人口比例'},
             series: [
                 { data: dataMap.dataLiquidWrold['2005'] } 
         	]
         },
         {
-            title: {text: '改善水源情况'},
+            title: {text: '2006年太平洋地区获得改善水源的人口比例'},
             series: [
                 { data: dataMap.dataLiquidWrold['2006'] } 
         	]
         },
         {
-            title: {text: '改善水源情况'},
+            title: {text: '2007年太平洋地区获得改善水源的人口比例'},
             series: [
                 { data: dataMap.dataLiquidWrold['2007'] } 
         	]
         },
         {
-            title: {text: '改善水源情况'},
+            title: {text: '2008年太平洋地区获得改善水源的人口比例'},
             series: [
                 { data: dataMap.dataLiquidWrold['2008'] } 
         	]
         },
         {
-            title: {text: '改善水源情况'},
+            title: {text: '2009年太平洋地区获得改善水源的人口比例'},
             series: [
                 { data: dataMap.dataLiquidWrold['2009'] } 
         	]
         },
         {
-            title: {text: '改善水源情况'},
+            title: {text: '2010年太平洋地区获得改善水源的人口比例'},
             series: [
                 { data: dataMap.dataLiquidWrold['2010'] } 
         	]
         },
         {
-            title: {text: '改善水源情况'},
+            title: {text: '2011年太平洋地区获得改善水源的人口比例'},
             series: [
                 { data: dataMap.dataLiquidWrold['2011'] } 
         	]
         },
         {
-            title: {text: '改善水源情况'},
+            title: {text: '2012年太平洋地区获得改善水源的人口比例'},
             series: [
                 { data: dataMap.dataLiquidWrold['2012'] } 
         	]
         },
         {
-            title: {text: '改善水源情况'},
+            title: {text: '2013年太平洋地区获得改善水源的人口比例'},
             series: [
                 { data: dataMap.dataLiquidWrold['2013'] } 
         	]
         },
         {
-            title: {text: '改善水源情况'},
+            title: {text: '2014年太平洋地区获得改善水源的人口比例'},
             series: [
                 { data: dataMap.dataLiquidWrold['2014'] } 
         	]
