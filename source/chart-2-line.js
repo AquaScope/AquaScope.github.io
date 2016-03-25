@@ -183,6 +183,9 @@ option = {
 	    		},
 	    		left: 'left'
 	    	},
+	    	tooltip: {
+	    	    show: false,
+	    	},
 	        legend: {
 	        	top: 80,
 	            left: 'left',

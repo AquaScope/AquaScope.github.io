@@ -177,10 +177,9 @@ dd {
   #chart-1-china-map {
     height: 350px !important;
   }
-  #chart-2-line {
-    height: 450px !important;
-  }
-  #chart-3-bar {
+  #chart-2-line,
+  #chart-3-bar,
+  #chart-4-china-scatter {
     height: 450px !important;
   }
 }

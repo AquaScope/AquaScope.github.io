@@ -162,6 +162,9 @@ options = {
                     sublink: null,
             		left: 'left'
             	},
+            	tooltip: {
+                    show: false,
+                },
                 legend: {
                 	top: 45,
                     left: 'left',

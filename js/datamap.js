@@ -75,7 +75,6 @@ function dataFillEmpty(data, list) {
      * list[1] 有完整name且value为null的对象数组
      */
     var fillData = dataFormat(data, list[0]);
-    console.log(fillData);
     var output = {};
     for (var year = 2005; year <= 2014; year++) {
         output[year] = list[1];
@@ -757,30 +756,3 @@ dataMap.dataLiquidWrold = dataFormatter(dataLiquidWrold, 'world');
 
 // 回填后的世界数据
 dataMap.dataLiquidWorld_fillEmpty = dataFormatter(dataLiquidWrold, 'WORLD', true);
-
-console.log(dataMap.dataLiquidWorld_fillEmpty);
-
-// function dataMix(list) {
-//     var mixData = {};
-//     for (var i = 0, l = list.length; i < l; i++) {
-//         for (var key in list[i]) {
-//             if (list[i][key] instanceof Array) {
-//                 mixData[key] = mixData[key] || [];
-//                 for (var j = 0, k = list[i][key].length; j < k; j++) {
-//                     mixData[key][j] = mixData[key][j]
-//                         || {name : list[i][key][j].name, value : []};
-//                     mixData[key][j].value.push(list[i][key][j].value);
-//                 }
-//             }
-//         }
-//     }
-//     return mixData;
-// }
-// 
-
-
-
-
-
-
-

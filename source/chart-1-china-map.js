@@ -216,7 +216,7 @@ option= {
                     itemGap: 5
                 },
                 tooltip: {
-                    position: 'inside'
+                    show: false,
                 },
                 visualMap: [
                     {
@@ -230,7 +230,8 @@ option= {
                     right: 0,
                     left: 0,
                     bottom: 0,
-                    autoPlay: false
+                    autoPlay: false,
+                    playInterval: 2000
                 },
                 series: {
                     roam: true
