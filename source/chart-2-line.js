@@ -1,166 +1,230 @@
 var chart_2 = echarts.init(document.getElementById('chart-2-line'));
 option = {
-	title: {
-	    text: '2005年至2014年全国分省用水情况',
-	    subtext: '数据来自: 中华人民共和国国家统计局',
-	    sublink: 'http://data.stats.gov.cn/',
-	    left: 'center',
-	},
-	tooltip : {
-	    trigger: 'axis',
-	    padding: 20,
-	},
-	legend: {
-	    data:['工业用水', '农业用水', '生活用水', '生态用水', '全国水资源总量', '全国地表水资源总量'],
-	    left: 'center',
-	    top: 60
-	},
-	toolbox: {
-		show: false,
-	    feature: {
-	        dataView: {
-	        	title: '查看原始数据',
-	        	lang: ['原始数据：2005年至2014年全国分省用水情况', '关闭', '刷新']
-	        },
-	        magicType: {
-	                type: ['stack', 'tiled']
-	            },
-	        saveAsImage: {}
-	    }
-	},
-	grid: {
-		top: 100,
-	    left: '3%',
-	    right: '3%',
-	    bottom: 0,
-	    containLabel: true
-	},
-	xAxis : [
-	    {
-	        type : 'category',
-	        boundaryGap : false,
-	 		axisLabel: { interval: 0 },
-	        data : ['2005','2006','2007','2008','2009','2010','2011','2012','2013','2014'],
-	        splitLine: {
-	        	lineStyle: {
-	        	    type: 'dashed'
-	        	}
-	        }
-	    }
-	],
-	yAxis : [
-	    {	
-	    	name: '用水量（亿立方米）',
-	        type : 'value',
-	        max: 10000,
-	        splitLine: {
-	        	lineStyle: {
-	        	    type: 'dashed'
-	        	}
-	        }
-	    },
-	    {	
-	    	name: '水资源总量（亿立方米）',
-	        type : 'value',
-	        splitLine: {
-	        	show: false
-	        }
-	    },
+	baseOption: {
+		title: {
+		    text: '2005年至2014年全国分省用水情况',
+		    subtext: '数据来自: 中华人民共和国国家统计局',
+		    sublink: 'http://data.stats.gov.cn/',
+		    left: 'center',
+		},
+		textStyle: {
+			fontFamily: 'Microsoft Yahei'
+		},
+		tooltip : {
+		    trigger: 'axis',
+		    padding: 20,
+		},
+		legend: {
+		    data:['工业用水', '农业用水', '生活用水', '生态用水', '全国水资源总量', '全国地表水资源总量'],
+		    left: 'center',
+		    top: 60
+		},
+		toolbox: {
+			show: false,
+		    feature: {
+		        dataView: {
+		        	title: '查看原始数据',
+		        	lang: ['原始数据：2005年至2014年全国分省用水情况', '关闭', '刷新']
+		        },
+		        magicType: {
+		                type: ['stack', 'tiled']
+		            },
+		        saveAsImage: {}
+		    }
+		},
+		xAxis : [
+		    {
+		        type : 'category',
+		        boundaryGap : false,
+		 		axisLabel: { interval: 0 },
+		        data : ['2005','2006','2007','2008','2009','2010','2011','2012','2013','2014'],
+		        splitLine: {
+		        	lineStyle: {
+		        	    type: 'dashed'
+		        	}
+		        }
+		    }
+		],
+		yAxis : [
+		    {	
+		    	name: '用水量（亿立方米）',
+		        type : 'value',
+		        max: 10000,
+		        splitLine: {
+		        	lineStyle: {
+		        	    type: 'dashed'
+		        	}
+		        }
+		    },
+		    {	
+		    	name: '水资源总量（亿立方米）',
+		        type : 'value',
+		        splitLine: {
+		        	show: false
+		        }
+		    },
 
-	],
-	series: [
-		{
-			name: '工业用水', type: 'line', stack: true, areaStyle: {normal: {}},
-			data: [
-				dataMap.dataLiquidIndustry['2005sum'],
-				dataMap.dataLiquidIndustry['2006sum'],
-				dataMap.dataLiquidIndustry['2007sum'],
-				dataMap.dataLiquidIndustry['2008sum'],
-				dataMap.dataLiquidIndustry['2009sum'],
-				dataMap.dataLiquidIndustry['2010sum'],
-				dataMap.dataLiquidIndustry['2011sum'],
-				dataMap.dataLiquidIndustry['2012sum'],
-				dataMap.dataLiquidIndustry['2013sum'],
-				dataMap.dataLiquidIndustry['2014sum']
-			]
-		},
-		{
-			name: '农业用水', type: 'line', stack: true, areaStyle: {normal: {}},
-			data: [
-				dataMap.dataLiquidAgriculture['2005sum'],
-				dataMap.dataLiquidAgriculture['2006sum'],
-				dataMap.dataLiquidAgriculture['2007sum'],
-				dataMap.dataLiquidAgriculture['2008sum'],
-				dataMap.dataLiquidAgriculture['2009sum'],
-				dataMap.dataLiquidAgriculture['2010sum'],
-				dataMap.dataLiquidAgriculture['2011sum'],
-				dataMap.dataLiquidAgriculture['2012sum'],
-				dataMap.dataLiquidAgriculture['2013sum'],
-				dataMap.dataLiquidAgriculture['2014sum']
-			]
-		},
-		{
-			name: '生活用水', type: 'line', stack: true, areaStyle: {normal: {}},
-			data: [
-				dataMap.dataLiquidLiving['2005sum'],
-				dataMap.dataLiquidLiving['2006sum'],
-				dataMap.dataLiquidLiving['2007sum'],
-				dataMap.dataLiquidLiving['2008sum'],
-				dataMap.dataLiquidLiving['2009sum'],
-				dataMap.dataLiquidLiving['2010sum'],
-				dataMap.dataLiquidLiving['2011sum'],
-				dataMap.dataLiquidLiving['2012sum'],
-				dataMap.dataLiquidLiving['2013sum'],
-				dataMap.dataLiquidLiving['2014sum']
-			]
-		},
-		{
-			name: '生态用水', type: 'line', stack: true, areaStyle: {normal: {}},
-			data: [
-				dataMap.dataLiquidEcology['2005sum'],
-				dataMap.dataLiquidEcology['2006sum'],
-				dataMap.dataLiquidEcology['2007sum'],
-				dataMap.dataLiquidEcology['2008sum'],
-				dataMap.dataLiquidEcology['2009sum'],
-				dataMap.dataLiquidEcology['2010sum'],
-				dataMap.dataLiquidEcology['2011sum'],
-				dataMap.dataLiquidEcology['2012sum'],
-				dataMap.dataLiquidEcology['2013sum'],
-				dataMap.dataLiquidEcology['2014sum']
-			]
-		},
-		{
-			name: '全国水资源总量', type: 'line',
-			yAxisIndex: 1,
-			data: [
-				dataMap.dataLiquidResource['2005sum'],
-				dataMap.dataLiquidResource['2006sum'],
-				dataMap.dataLiquidResource['2007sum'],
-				dataMap.dataLiquidResource['2008sum'],
-				dataMap.dataLiquidResource['2009sum'],
-				dataMap.dataLiquidResource['2010sum'],
-				dataMap.dataLiquidResource['2011sum'],
-				dataMap.dataLiquidResource['2012sum'],
-				dataMap.dataLiquidResource['2013sum'],
-				dataMap.dataLiquidResource['2014sum']
-			]
-		},
-		{
-			name: '全国地表水资源总量', type: 'line',
-			yAxisIndex: 1,
-			data: [
-				dataMap.dataSurfaceLiquid['2005sum'],
-				dataMap.dataSurfaceLiquid['2006sum'],
-				dataMap.dataSurfaceLiquid['2007sum'],
-				dataMap.dataSurfaceLiquid['2008sum'],
-				dataMap.dataSurfaceLiquid['2009sum'],
-				dataMap.dataSurfaceLiquid['2010sum'],
-				dataMap.dataSurfaceLiquid['2011sum'],
-				dataMap.dataSurfaceLiquid['2012sum'],
-				dataMap.dataSurfaceLiquid['2013sum'],
-				dataMap.dataSurfaceLiquid['2014sum']
-			]
-		}
+		],
+		series: [
+			{
+				name: '生态用水', type: 'line', stack: true, areaStyle: {normal: {}},
+				data: [
+					dataMap.dataLiquidEcology['2005sum'],
+					dataMap.dataLiquidEcology['2006sum'],
+					dataMap.dataLiquidEcology['2007sum'],
+					dataMap.dataLiquidEcology['2008sum'],
+					dataMap.dataLiquidEcology['2009sum'],
+					dataMap.dataLiquidEcology['2010sum'],
+					dataMap.dataLiquidEcology['2011sum'],
+					dataMap.dataLiquidEcology['2012sum'],
+					dataMap.dataLiquidEcology['2013sum'],
+					dataMap.dataLiquidEcology['2014sum']
+				]
+			},
+			{
+				name: '工业用水', type: 'line', stack: true, areaStyle: {normal: {}},
+				data: [
+					dataMap.dataLiquidIndustry['2005sum'],
+					dataMap.dataLiquidIndustry['2006sum'],
+					dataMap.dataLiquidIndustry['2007sum'],
+					dataMap.dataLiquidIndustry['2008sum'],
+					dataMap.dataLiquidIndustry['2009sum'],
+					dataMap.dataLiquidIndustry['2010sum'],
+					dataMap.dataLiquidIndustry['2011sum'],
+					dataMap.dataLiquidIndustry['2012sum'],
+					dataMap.dataLiquidIndustry['2013sum'],
+					dataMap.dataLiquidIndustry['2014sum']
+				]
+			},
+			{
+				name: '农业用水', type: 'line', stack: true, areaStyle: {normal: {}},
+				data: [
+					dataMap.dataLiquidAgriculture['2005sum'],
+					dataMap.dataLiquidAgriculture['2006sum'],
+					dataMap.dataLiquidAgriculture['2007sum'],
+					dataMap.dataLiquidAgriculture['2008sum'],
+					dataMap.dataLiquidAgriculture['2009sum'],
+					dataMap.dataLiquidAgriculture['2010sum'],
+					dataMap.dataLiquidAgriculture['2011sum'],
+					dataMap.dataLiquidAgriculture['2012sum'],
+					dataMap.dataLiquidAgriculture['2013sum'],
+					dataMap.dataLiquidAgriculture['2014sum']
+				]
+			},
+			{
+				name: '生活用水', type: 'line', stack: true, areaStyle: {normal: {}},
+				data: [
+					dataMap.dataLiquidLiving['2005sum'],
+					dataMap.dataLiquidLiving['2006sum'],
+					dataMap.dataLiquidLiving['2007sum'],
+					dataMap.dataLiquidLiving['2008sum'],
+					dataMap.dataLiquidLiving['2009sum'],
+					dataMap.dataLiquidLiving['2010sum'],
+					dataMap.dataLiquidLiving['2011sum'],
+					dataMap.dataLiquidLiving['2012sum'],
+					dataMap.dataLiquidLiving['2013sum'],
+					dataMap.dataLiquidLiving['2014sum']
+				]
+			},
+			{
+				name: '全国水资源总量', type: 'line',
+				yAxisIndex: 1,
+				data: [
+					dataMap.dataLiquidResource['2005sum'],
+					dataMap.dataLiquidResource['2006sum'],
+					dataMap.dataLiquidResource['2007sum'],
+					dataMap.dataLiquidResource['2008sum'],
+					dataMap.dataLiquidResource['2009sum'],
+					dataMap.dataLiquidResource['2010sum'],
+					dataMap.dataLiquidResource['2011sum'],
+					dataMap.dataLiquidResource['2012sum'],
+					dataMap.dataLiquidResource['2013sum'],
+					dataMap.dataLiquidResource['2014sum']
+				]
+			},
+			{
+				name: '全国地表水资源总量', type: 'line',
+				yAxisIndex: 1,
+				data: [
+					dataMap.dataSurfaceLiquid['2005sum'],
+					dataMap.dataSurfaceLiquid['2006sum'],
+					dataMap.dataSurfaceLiquid['2007sum'],
+					dataMap.dataSurfaceLiquid['2008sum'],
+					dataMap.dataSurfaceLiquid['2009sum'],
+					dataMap.dataSurfaceLiquid['2010sum'],
+					dataMap.dataSurfaceLiquid['2011sum'],
+					dataMap.dataSurfaceLiquid['2012sum'],
+					dataMap.dataSurfaceLiquid['2013sum'],
+					dataMap.dataSurfaceLiquid['2014sum']
+				]
+			}
+		]
+	},
+	media: [
+	{
+	    option: {
+	        grid: {
+	        	top: 120,
+	            left: '3%',
+	            right: '3%',
+	            bottom: 10,
+	            containLabel: true
+	        },
+	    }
+	},
+	{
+	    query: {maxWidth: 640},
+	    option: {
+	    	title: {
+	    		subtext: '数据来自: 中华人民共和国国家统计局\n单位：亿立方米\n左侧轴线为用水总量\n右侧轴线为水资源总量',
+                sublink: null,
+	    		textStyle: {
+	    			fontSize: 14
+	    		},
+	    		left: 'left'
+	    	},
+	        legend: {
+	        	top: 80,
+	            left: 'left',
+	            itemGap: 5
+	        },
+	        grid: {
+	            top: 160,
+	            left: 20,
+	            right: 20,
+	            bottom: 24
+	        },
+	        xAxis: {
+	            nameLocation: 'middle',
+	            splitLine: {
+	            	show: false
+	            },
+	            axisLabel: {
+	            	interval: 2
+	            },
+	            axisTick: {
+	            	interval: 0
+	            }
+	        },
+	        yAxis: [
+	        	{	
+	        		name: '',
+	        		axisLabel: {
+	        			inside: true
+	        		}
+		        },
+		        {
+	        		name: '',
+		        	axisLabel: {
+		        		inside: true,
+		        	},
+		        	splitLine: {
+		        		show: false
+		        	}
+		        },
+	        ]
+	    }
+	}
 	]
 };
 

@@ -75,16 +75,15 @@ function dataFillEmpty(data, list) {
      * list[1] 有完整name且value为null的对象数组
      */
     var fillData = dataFormat(data, list[0]);
+    console.log(fillData);
     var output = {};
     for (var year = 2005; year <= 2014; year++) {
         output[year] = list[1];
-        if(fillData[year] instanceof Array) {
-            for(var i in output[year]) {
-                output[year][i].value = 0;
-                for(var j in fillData[year]) {
-                    if(output[year][i].name === fillData[year][j].name) {
-                        output[year][i].value = fillData[year][j].value;
-                    }
+        for(var i in output[year]) {
+            output[year][i].value = 0;
+            for(var j in fillData[year]) {
+                if(output[year][i].name === fillData[year][j].name) {
+                    output[year][i].value = fillData[year][j].value;
                 }
             }
         }
@@ -760,7 +759,6 @@ dataMap.dataLiquidWrold = dataFormatter(dataLiquidWrold, 'world');
 dataMap.dataLiquidWorld_fillEmpty = dataFormatter(dataLiquidWrold, 'WORLD', true);
 
 console.log(dataMap.dataLiquidWorld_fillEmpty);
-
 
 // function dataMix(list) {
 //     var mixData = {};

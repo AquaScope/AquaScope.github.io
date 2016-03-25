@@ -18,7 +18,7 @@ dd {
   margin: 0;
 }
 .chartbox {
-  padding: 50px 0;
+  padding: 20px 0;
 }
 #intro {
   background: url('../images/intro-bg.jpg') 30% 0 no-repeat fixed;
@@ -44,7 +44,7 @@ dd {
 #intro .content h2 {
   font-size: 16px;
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 640px) {
   #intro {
     background: url('../images/intro-bg-small.jpg') 0 0 no-repeat;
     background-size: auto 100%;
@@ -68,13 +68,13 @@ dd {
   float: right;
 }
 #section-2 .viewbox {
-  background: url('../images/shortage.jpg') 50% 0 no-repeat fixed;
+  background: url('../images/waterTap.jpg') 50% 0 no-repeat fixed;
 }
 #section-2 .viewbox .float-text {
   float: right;
 }
 #section-3 .viewbox {
-  background: url('../images/final-bg.jpg') 50% 0 no-repeat fixed;
+  background: url('../images/drougntChina.jpg') 50% 0 no-repeat fixed;
 }
 #section-3 .viewbox .float-text {
   float: left;
@@ -86,7 +86,7 @@ dd {
   float: left;
 }
 #section-5 .viewbox {
-  background: url('../images/bottle-bg.jpg') 50% 0 no-repeat fixed;
+  background: url('../images/swimmingPool.jpg') 50% 0 no-repeat fixed;
 }
 #section-5 .viewbox .float-text {
   float: left;
@@ -157,7 +157,7 @@ dd {
 #section-5 .viewbox-static img {
   max-width: 100%;
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 640px) {
   #section-1 .viewbox,
   #section-2 .viewbox,
   #section-3 .viewbox,
@@ -173,6 +173,15 @@ dd {
     display: block;
     background-size: 100% auto;
     background-position: center;
+  }
+  #chart-1-china-map {
+    height: 350px !important;
+  }
+  #chart-2-line {
+    height: 450px !important;
+  }
+  #chart-3-bar {
+    height: 450px !important;
   }
 }
 #footer .content {

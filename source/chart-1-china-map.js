@@ -73,6 +73,9 @@ option= {
                 }
             },
         },
+        textStyle: {
+            fontFamily: 'Microsoft Yahei'
+        },
         legend: {
             show: false,
             data:['水资源情况'],
@@ -191,72 +194,116 @@ option= {
             }
         ]
     },
+    media: [
+        {
+            option: {
+            }
+        },
+        {
+            query: {maxWidth: 640},
+            option: {
+                title: {
+                    textStyle: {
+                        fontSize: 14
+                    },
+                    subtext: '数据来自: 中华人民共和国国家统计局\n气泡大小为水资源总量(亿立方米)\n气泡明暗为人均水资源占有量(立方米)',
+                    sublink: null,
+                    left: 'left'
+                },
+                legend: {
+                    top: 45,
+                    left: 'left',
+                    itemGap: 5
+                },
+                tooltip: {
+                    position: 'inside'
+                },
+                visualMap: [
+                    {
+                        show: false,
+                    },
+                    {
+                        show: false
+                    }
+                ],
+                timeline: {
+                    right: 0,
+                    left: 0,
+                    bottom: 0,
+                    autoPlay: false
+                },
+                series: {
+                    roam: true
+                }
+            }
+        }
+    ],
     options: [
         {
-            title: {text: '2005 年全国分省水资源总量与人均水资源占有量情况'},
+            title: {text: '2005年全国水资源总量与人均水资源占有量情况'},
             series: [ { 
                 data: convertData(dataMap.dataLiquidResource_Personal['2005']) 
             } 
         ]
         },
         {
-            title: {text: '2006 年全国分省水资源总量与人均水资源占有量情况'},
+            title: {text: '2006年全国水资源总量与人均水资源占有量情况'},
             series: [ { 
                 data: convertData(dataMap.dataLiquidResource_Personal['2006']) 
             } 
         ]
         },
         {
-            title: {text: '2007 年全国分省水资源总量与人均水资源占有量情况'},
+            title: {text: '2007年全国水资源总量与人均水资源占有量情况'},
             series: [ { 
                 data: convertData(dataMap.dataLiquidResource_Personal['2007']) 
             } 
         ]
         },
         {
-            title: {text: '2008 年全国分省水资源总量与人均水资源占有量情况'},
+            title: {text: '2008年全国水资源总量与人均水资源占有量情况'},
             series: [ { 
                 data: convertData(dataMap.dataLiquidResource_Personal['2008']) 
             } 
         ]
         },
         {
-            title: {text: '2009 年全国分省水资源总量与人均水资源占有量情况'},
+            title: {text: '2009年全国水资源总量与人均水资源占有量情况'},
             series: [ { 
                 data: convertData(dataMap.dataLiquidResource_Personal['2009']) 
             } 
         ]
         },
         {
-            title: {text: '2010 年全国分省水资源总量与人均水资源占有量情况'},
+            title: {text: '2010年全国水资源总量与人均水资源占有量情况'},
             series: [ { 
                 data: convertData(dataMap.dataLiquidResource_Personal['2010']) 
             } 
         ]
         },
         {
-            title: {text: '2011 年全国分省水资源总量与人均水资源占有量情况'},
+            title: {text: '2011年全国水资源总量与人均水资源占有量情况'},
             series: [ { 
                 data: convertData(dataMap.dataLiquidResource_Personal['2011']) 
             } 
         ]
         },
         {
-            title: {text: '2012 年全国分省水资源总量与人均水资源占有量情况'},
+            title: {text: '2012年全国水资源总量与人均水资源占有量情况'},
             series: [ { 
                 data: convertData(dataMap.dataLiquidResource_Personal['2012']) 
             } 
         ]
         },
         {
-            title: {text: '2013 年全国分省水资源总量与人均水资源占有量情况'},
+            title: {text: '2013年全国水资源总量与人均水资源占有量情况'},
             series: [ { 
                 data: convertData(dataMap.dataLiquidResource_Personal['2013']) 
             } 
         ]
         },
         {
-            title: {text: '2014 年全国分省水资源总量与人均水资源占有量情况'},
+            title: {text: '2014年全国水资源总量与人均水资源占有量情况'},
             series: [ { 
                 data: convertData(dataMap.dataLiquidResource_Personal['2014']) 
             } 

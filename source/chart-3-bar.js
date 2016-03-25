@@ -36,6 +36,9 @@ options = {
 		    sublink: 'http://data.stats.gov.cn/',
 		    left: 'center',
 		},
+		textStyle: {
+			fontFamily: 'Microsoft Yahei'
+		},
 		tooltip : {
 		    trigger: 'axis',
 		    padding: 20,
@@ -60,13 +63,6 @@ options = {
 		        },
 		        saveAsImage: {}
 		    }
-		},
-		grid: {
-			top: 100,
-		    left: '5%',
-		    right: '10%',
-		    bottom: 80,
-		    containLabel: true
 		},
 		xAxis : [
 		    {
@@ -144,7 +140,55 @@ options = {
 			}
 		]
 	},
-
+	media: [
+        {
+            option: {
+                grid: {
+                	top: 100,
+                    left: '5%',
+                    right: '10%',
+                    bottom: 80,
+                    containLabel: true
+                },
+            }
+        },
+        {
+            query: {maxWidth: 640},
+            option: {
+            	title: {
+            		textStyle: {
+            			fontSize: 14
+            		},
+                    sublink: null,
+            		left: 'left'
+            	},
+                legend: {
+                	top: 45,
+                    left: 'left',
+                    itemGap: 5
+                },
+                grid: {
+                    top: 76,
+                    left: 40,
+                    right: 80,
+                    bottom: 24
+                },
+                xAxis: {
+                    nameLocation: 'middle',
+                    nameGap: 25,
+                    splitNumber: 3
+                },
+                timeline: {
+                    orient: 'vertical',
+                    inverse: true,
+                    right: 0,
+                    top: 100,
+                    bottom: 0,
+                    width: 55
+                }
+            }
+        }
+    ],
 	options: [
         {
             title: {text: '2005至2014年水资源无法自给的省份'},
