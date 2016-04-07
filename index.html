@@ -6,22 +6,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<script src="http://cdn.bootcss.com/jquery/1.4.4/jquery.min.js"></script>
-	<script type="text/javascript" src="js/jquery.localscroll-1.2.7-min.js"></script>
-	<script type="text/javascript" src="js/jquery.parallax-1.1.3.js"></script>
-	<script type="text/javascript" src="js/jquery.scrollTo-1.4.2-min.js"></script>
-	<script type="text/javascript" src="js/echarts.js"></script>
-	<script type="text/javascript" src="source/geoCoord.js"></script>
-	<script type="text/javascript" src="js/datamap.js"></script>
-	<script type="text/javascript" src="source/china.js"></script>
-	<script type="text/javascript" src="source/world.js"></script>
+	<script type="text/javascript" src="js/static/libs.min.js"></script>
+	<script type="text/javascript" src="js/modules/echarts.min.js"></script>
+	<script type="text/javascript" src="js/modules/china.js"></script>
+	<script type="text/javascript" src="js/modules/world.js"></script>
+	<script type="text/javascript" src="js/modules/geoCoord.js"></script>
+	<script type="text/javascript" src="js/static/datamap.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			// $('#nav').localScroll(800);
-			
-			//.parallax(xPosition, speedFactor, outerHeight) options:
-			//xPosition - Horizontal position of the element
-			//inertia - speed to move relative to vertical scroll. Example: 0.1 is one tenth the speed of scrolling, 2 is twice the speed of scrolling
-			//outerHeight (true/false) - Whether or not jQuery should use it's outerHeight option to determine when a section is in the viewport
 			var winWid = document.documentElement.clientWidth;
 			if ( winWid > 640 ) {
 				$('#intro').parallax("50%", 0.3);
@@ -32,8 +24,6 @@
 			$('#section-4 .viewbox').parallax("50%", 0.3);
 			$('#section-5 .viewbox').parallax("50%", 0.3);
 		})
-
-
 	</script>
 </head>
 <body>
@@ -199,10 +189,6 @@
 			</p>
 		</div>
 	</div>
-	<script type="text/javascript" src="source/chart-1-china-map.js"></script>
-	<script type="text/javascript" src="source/chart-2-line.js"></script>
-	<script type="text/javascript" src="source/chart-3-bar.js"></script>
-	<script type="text/javascript" src="source/chart-4-china-scatter.js"></script>
-	<script type="text/javascript" src="source/chart-5-world-map.js"></script>
+	<script type="text/javascript" src="js/static/chart.min.js"></script>
 </body>
 </html>
